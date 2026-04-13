@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevFit | Fuerza Nivel Medio</title>
+    <style>
+        :root {
+            --bg-color: rgb(202, 202, 202);
+            --card-bg: #ffffff;
+            --nav-bg: #0f172a;
+            --text-main: #1e293b;
+            --border-color: #000000;
+            --orange: #34d399; /* Verde esmeralda para diferenciar nivel medio */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* --- NAVEGACIÓN --- */
+       nav {
+    display: flex;
+    justify-content: space-between; /* Logo a la izquierda, links a la derecha */
+    align-items: center;
+    padding: 0.8rem 2rem; /* Reducimos el padding vertical */
+    background: var(--nav-bg);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* Contenedor de enlaces */
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    color: #ff9900;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem; /* Un poco más pequeño para legibilidad */
+    letter-spacing: 1px;
+}
+
+        .devfit-logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Menos espacio entre icono y texto */
+    text-decoration: none !important; /* Quita subrayados de enlace */
+    padding: 0;
+}
+
+.devfit-symbol {
+    width: 32px; /* Reducido de 45px */
+    height: 32px; /* Reducido de 45px */
+    border: 2px solid #000000;
+    background-color: #ffffff;
+    border-radius: 40% 10% 40% 40%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2px 2px 0px #ff7a00; /* Sombra más pequeña */
+    transition: all 0.2s ease;
+}
+
+.code-icon {
+    color: #00d2ff;
+    font-family: 'Courier New', monospace;
+    font-weight: 900;
+    font-size: 0.75rem; /* Icono más pequeño */
+}
+
+.devfit-brand {
+    font-size: 1.3rem; /* Reducido de 1.8rem */
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: baseline;
+    text-transform: none; /* Evita que el logo se ponga en mayúsculas por el estilo general de nav a */
+}
+
+.text-dev { color: #ff7a00; }
+.text-sh {
+    color: #00d2ff;
+    font-size: 0.7rem;
+    font-family: 'Courier New', monospace;
+    margin-left: 1px;
+}
+
+/* Hover interactivo para todo el logo */
+.devfit-logo-wrapper:hover .devfit-symbol {
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0px #ff7a00;
+}
+
+
+        .container { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
+        
+        header { text-align: center; margin-bottom: 50px; }
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin: 0;
+            background: linear-gradient(135deg, #000000, #444444);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .selector-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 10px 10px 0px var(--border-color);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .day-btn {
+            background: white;
+            border: 2px solid var(--border-color);
+            padding: 15px;
+            border-radius: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 4px 4px 0px var(--border-color);
+        }
+
+        .day-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px var(--border-color); }
+        .day-btn.active { background: var(--orange); color: white; transform: translate(2px, 2px); box-shadow: 0px 0px 0px; }
+
+        .routine-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .split-card {
+            background: white;
+            border: 2px solid var(--border-color);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            box-shadow: 8px 8px 0px var(--border-color);
+        }
+
+        .split-title {
+            display: inline-block;
+            background: var(--nav-bg);
+            color: var(--orange);
+            padding: 5px 15px;
+            border-radius: 8px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .exercise-item {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            border-left: 4px solid var(--orange);
+        }
+
+        .exercise-item strong { display: block; font-size: 1.1rem; }
+        .exercise-item span { color: #64748b; font-size: 0.9rem; font-family: monospace; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        footer { text-align: center; padding: 60px; background: var(--nav-bg); color: var(--orange); margin-top: 60px; }
+    </style>
+</head>
+<body>
+
+    <nav>
+    <a href="index.html" class="devfit-logo-wrapper">
+        <div class="devfit-symbol">
+            <span class="code-icon">&lt;/&gt;</span>
+        </div>
+        <div class="devfit-brand">
+            <span class="text-dev">dev</span>Fit<span class="text-sh">.sh</span>
+        </div>
+    </a>
+
+    <div class="nav-links">
+        <a href="index.html">Inicio</a>
+        <a href="rutinasVarias.html">Volver al Selector</a>
+    </div>
+</nav>
+
+    <div class="container">
+        <header>
+            <h1>Fuerza_Medio.exe</h1>
+            <p>// Kernel Upgrade: Resistance & Weighted Training</p>
+        </header>
+
+        <div class="selector-card">
+            <h3>¿Cuántos días puedes entrenar a la semana?</h3>
+            <div class="days-grid">
+                <button class="day-btn" onclick="showRoutine(2, this)">2 DÍAS</button>
+                <button class="day-btn" onclick="showRoutine(3, this)">3 DÍAS</button>
+                <button class="day-btn" onclick="showRoutine(4, this)">4 DÍAS</button>
+            </div>
+        </div>
+
+        <div id="routine-display"></div>
+    </div>
+
+    <footer>
+        <span style="color:white; font-weight:900;">DevFit.sh</span><br>
+        Mid Level Human Optimization
+    </footer>
+
+    <script>
+        const routines = {
+            2: `
+                <div class="routine-section" style="display:block">
+                    <div class="split-card">
+                        <span class="split-title">Día 1: Upper Body (Overload)</span>
+                        <div class="exercise-item">
+                            <strong>Flexiones con Mochila / Lastre</strong>
+                            <span>3 series x 10-12 reps // Usa una mochila con libros para aumentar la carga.</span>
+                        </div>
+                        <div class="exercise-item">
+                            <strong>Remo con Garrafa o Mancuerna</strong>
+                            <span>3 series x 12 reps // Tracción pesada para compensar la postura.</span>
+                        </div>
+                        <div class="exercise-item">
+                            <strong>Press Militar con Mancuernas</strong>
+                            <span>3 series x 10 reps // Fuerza vertical de hombros.</span>
+                        </div>
+                    </div>
+                    <div class="split-card">
+                        <span class="split-title">Día 2: Lower Body (Power)</span>
+                        <div class="exercise-item">
+                            <strong>Sentadilla Goblet (con peso)</strong>
+                            <span>3 series x 12 reps // Sujeta una garrafa frente al pecho.</span>
+                        </div>
+                        <div class="exercise-item">
+                            <strong>Zancadas con Mancuernas</strong>
+                            <span>3 series x 10 por pierna // Mantén el torso erguido con peso a los lados.</span>
+                        </div>
+                        <div class="exercise-item">
+                            <strong>Plancha con Lastre</strong>
+                            <span>3 series x 45 seg // Coloca un objeto estable en tu zona lumbar.</span>
+                        </div>
+                    </div>
+                </div>`,
+            3: `
+                <div class="routine-section" style="display:block">
+                    <div class="split-card"><span class="split-title">Día 1: Empuje & Tracción</span>
+                        <div class="exercise-item"><strong>Press de Banca Suelo (Mancuernas)</strong><span>3x12 reps</span></div>
+                        <div class="exercise-item"><strong>Remo al Mentón (Banda o Peso)</strong><span>3x12 reps</span></div>
+                    </div>
+                    <div class="split-card"><span class="split-title">Día 2: Pierna Completa</span>
+                        <div class="exercise-item"><strong>Peso Muerto Rumano (Mancuernas)</strong><span>3x12 reps</span></div>
+                        <div class="exercise-item"><strong>Sentadilla Búlgara</strong><span>3x10 por pierna // Un pie en silla.</span></div>
+                    </div>
+                    <div class="split-card"><span class="split-title">Día 3: Core & Hombros</span>
+                        <div class="exercise-item"><strong>Press Arnold</strong><span>3x10 reps</span></div>
+                        <div class="exercise-item"><strong>Rueda Abdominal o Plancha Dinámica</strong><span>3x12 reps</span></div>
+                    </div>
+                </div>`,
+            4: `
+                <div class="routine-section" style="display:block">
+                    <div class="split-card"><span class="split-title">Día 1: Pecho & Bíceps</span>
+                        <div class="exercise-item"><strong>Aperturas con Mancuernas</strong><span>3x12 reps</span></div>
+                        <div class="exercise-item"><strong>Curl de Bíceps (Mancuerna/Banda)</strong><span>3x15 reps</span></div>
+                    </div>
+                    <div class="split-card"><span class="split-title">Día 2: Pierna (Quadriceps Focus)</span>
+                        <div class="exercise-item"><strong>Sentadilla con Salto (Lastrada)</strong><span>3x10 reps</span></div>
+                        <div class="exercise-item"><strong>Zancada Lateral con Peso</strong><span>3x12 reps</span></div>
+                    </div>
+                    <div class="split-card"><span class="split-title">Día 3: Espalda & Tríceps</span>
+                        <div class="exercise-item"><strong>Remo Invertido (bajo mesa robusta)</strong><span>3x10 reps</span></div>
+                        <div class="exercise-item"><strong>Press Francés con Mancuerna</strong><span>3x12 reps</span></div>
+                    </div>
+                    <div class="split-card"><span class="split-title">Día 4: Hombros & Core</span>
+                        <div class="exercise-item"><strong>Elevaciones Laterales</strong><span>3x15 reps</span></div>
+                        <div class="exercise-item"><strong>Ruso Twist con Peso</strong><span>3x20 reps</span></div>
+                    </div>
+                </div>`
+        };
+
+        function showRoutine(days, btn) {
+            document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('routine-display').innerHTML = routines[days];
+            window.scrollTo({
+                top: document.getElementById('routine-display').offsetTop - 100,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</body>
+</html>

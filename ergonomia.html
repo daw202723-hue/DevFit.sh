@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevFit | Guía de Ergonomía para Programadores</title>
+    <style>
+        :root {
+            --bg-color: rgb(202, 202, 202);
+            --card-bg: #ffffff;
+            --nav-bg: #0f172a;
+            --text-main: #1e293b;
+            --border-color: #000000;
+            --orange: #ff9900;
+            --green: lightblue;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* --- NAVEGACIÓN --- */
+       nav {
+    display: flex;
+    justify-content: space-between; /* Logo a la izquierda, links a la derecha */
+    align-items: center;
+    padding: 0.8rem 2rem; /* Reducimos el padding vertical */
+    background: var(--nav-bg);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* Contenedor de enlaces */
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    color: #ff9900;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem; /* Un poco más pequeño para legibilidad */
+    letter-spacing: 1px;
+}
+
+/* --- LOGO COMPACTO E INTERACTIVO --- */
+.devfit-logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Menos espacio entre icono y texto */
+    text-decoration: none !important; /* Quita subrayados de enlace */
+    padding: 0;
+}
+
+.devfit-symbol {
+    width: 32px; /* Reducido de 45px */
+    height: 32px; /* Reducido de 45px */
+    border: 2px solid #000000;
+    background-color: #ffffff;
+    border-radius: 40% 10% 40% 40%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2px 2px 0px #ff7a00; /* Sombra más pequeña */
+    transition: all 0.2s ease;
+}
+
+.code-icon {
+    color: #00d2ff;
+    font-family: 'Courier New', monospace;
+    font-weight: 900;
+    font-size: 0.75rem; /* Icono más pequeño */
+}
+
+.devfit-brand {
+    font-size: 1.3rem; /* Reducido de 1.8rem */
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: baseline;
+    text-transform: none; /* Evita que el logo se ponga en mayúsculas por el estilo general de nav a */
+}
+
+.text-dev { color: #ff7a00; }
+.text-sh {
+    color: #00d2ff;
+    font-size: 0.7rem;
+    font-family: 'Courier New', monospace;
+    margin-left: 1px;
+}
+
+/* Hover interactivo para todo el logo */
+.devfit-logo-wrapper:hover .devfit-symbol {
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0px #ff7a00;
+}
+        .container { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
+        
+        header { text-align: center; margin-bottom: 50px; }
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin: 0;
+            color: var(--nav-bg);
+        }
+
+        .hero-card {
+            background: var(--green);
+            color: white;
+            padding: 40px;
+            border-radius: 30px;
+            border: 2px solid var(--border-color);
+            box-shadow: 10px 10px 0px var(--border-color);
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            border-left: 5px solid var(--green);
+            padding-left: 15px;
+            margin-top: 40px;
+            color: var(--nav-bg);
+        }
+
+        .setup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .info-card {
+            background: white;
+            border: 2px solid var(--border-color);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 6px 6px 0px var(--border-color);
+        }
+
+        .info-card h3 { margin-top: 0; color: var(--green); }
+
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            background: #f1f5f9;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checklist li::before {
+            content: "✔";
+            color: var(--green);
+            font-weight: bold;
+        }
+
+        .warning-box {
+            background: #fff7ed;
+            border: 2px solid #ed8936;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+
+        footer { text-align: center; padding: 60px; background: var(--nav-bg); color: #ff9900; margin-top: 60px; }
+
+        /* AdSense Placeholder */
+        .ad-space {
+            background: #eee;
+            text-align: center;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px dashed #ccc;
+            color: #999;
+            font-size: 0.8rem;
+        }
+    </style>
+    <meta name="description" content="Guía de ergonomía y ejercicios para programadores. Optimiza tu setup y evita dolores de espalda.">
+</head>
+<body>
+
+     <nav>
+    <a href="index.html" class="devfit-logo-wrapper">
+        <div class="devfit-symbol">
+            <span class="code-icon">&lt;/&gt;</span>
+        </div>
+        <div class="devfit-brand">
+            <span class="text-dev">dev</span>Fit<span class="text-sh">.sh</span>
+        </div>
+    </a>
+
+    <div class="nav-links">
+        <a href="index.html">Inicio</a>
+        <a href="rutinasVarias.html">Rutinas</a>
+        <a href="problemasVarios.html">Problemas</a>
+        <a href="ergonomia.html">Ergonomía</a>
+    </div>
+</nav>
+
+
+    <div class="container">
+        <header>
+            <h1>Ergonomia_Pro.sh</h1>
+            <p>Optimización del Hardware Externo para Máximo Rendimiento</p>
+        </header>
+
+        <div class="ad-space">PUBLICIDAD / AD SPACE</div>
+
+        <div class="hero-card">
+            <h2>La Ergonomía no es un lujo, es Longevidad</h2>
+            <p>Un desarrollador senior no solo destaca por su código, sino por cómo cuida su herramienta más valiosa: su cuerpo. Un mal setup hoy es una baja médica mañana.</p>
+        </div>
+
+        <h2>1. El Setup Ideal (Hardware Config)</h2>
+        <div class="setup-grid">
+            <div class="info-card">
+                <h3>Monitor</h3>
+                <p>La parte superior de la pantalla debe estar a la altura de tus ojos. Distancia recomendada: un brazo de longitud (50-70cm).</p>
+            </div>
+            <div class="info-card">
+                <h3>Silla</h3>
+                <p>Debe tener soporte lumbar. Tus pies deben tocar el suelo completamente, manteniendo las rodillas en un ángulo de 90 grados.</p>
+            </div>
+            <div class="info-card">
+                <h3>Teclado y Ratón</h3>
+                <p>Tus antebrazos deben estar paralelos al suelo. Evita doblar las muñecas hacia arriba; usa reposamuñecas si es necesario.</p>
+            </div>
+        </div>
+
+        <div class="ad-space">PUBLICIDAD / AD SPACE</div>
+
+        <h2>2. Reglas de Oro para Devs</h2>
+        <ul class="checklist">
+            <li><strong>Regla 90-90-90:</strong> Codos, cadera y rodillas siempre en ángulos rectos.</li>
+            <li><strong>Iluminación:</strong> Evita reflejos en la pantalla. La luz ambiental debe ser igual o ligeramente superior a la del monitor.</li>
+            <li><strong>Monitor Dual:</strong> Si usas dos pantallas, asegúrate de que la principal esté frente a ti para no rotar el cuello constantemente.</li>
+            <li><strong>Soportes de Portátil:</strong> Nunca trabajes directamente sobre un portátil en la mesa; usa un soporte y teclado externo.</li>
+        </ul>
+
+        <div class="warning-box">
+            <strong>⚠️ AVISO CRÍTICO:</strong> El síntoma es el último aviso. Si sientes hormigueo en los dedos o dolor punzante en la zona lumbar, no lo ignores con café o analgésicos. Revisa tu postura inmediatamente.
+        </div>
+
+        <h2>3. Hábitos de Micro-Mantenimiento</h2>
+        <p>Incluso con el mejor setup del mundo, el cuerpo humano no está diseñado para estar estático. Implementa estos comandos en tu rutina:</p>
+        <div class="info-card">
+            <p><strong>Pausas Activas:</strong> Cada 60 minutos, levántate y camina 2 minutos. Esto reinicia el flujo sanguíneo en tus piernas y activa tus glúteos.</p>
+            <p><strong>Descanso Ocular:</strong> Mira hacia una ventana o un punto lejano cada vez que termine un ciclo de Pomodoro para relajar los músculos del enfoque.</p>
+        </div>
+
+        <div class="ad-space">PUBLICIDAD / AD SPACE</div>
+    </div>
+
+    <footer>
+        <span style="color:white; font-weight:900;">DevFit.sh</span><br>
+        Ergonomics & Health Protocol v1.0
+    </footer>
+
+</body>
+</html>

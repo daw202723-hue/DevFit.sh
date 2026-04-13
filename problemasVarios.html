@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevFit | Troubleshooting Humano</title>
+    <style>
+        :root {
+            --bg-color: rgb(202, 202, 202);
+            --card-bg: #ffffff;
+            --nav-bg: #0f172a;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #000000;
+            --orange: #ff9900; 
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* --- NAVEGACIÓN --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 2rem;
+            background: var(--nav-bg);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: #ff9900;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .devfit-logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none !important;
+        }
+
+        .devfit-symbol {
+            width: 32px;
+            height: 32px;
+            border: 2px solid #000000;
+            background-color: #ffffff;
+            border-radius: 40% 10% 40% 40%; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 2px 2px 0px #ff7a00;
+            transition: all 0.2s ease;
+        }
+
+        .code-icon {
+            color: #00d2ff;
+            font-family: 'Courier New', monospace;
+            font-weight: 900;
+            font-size: 0.75rem;
+        }
+
+        .devfit-brand {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: baseline;
+            text-transform: none;
+        }
+
+        .text-dev { color: #ff7a00; }
+        .text-sh { color: #00d2ff; font-size: 0.7rem; font-family: 'Courier New', monospace; margin-left: 1px; }
+
+        .devfit-logo-wrapper:hover .devfit-symbol {
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0px #ff7a00;
+        }
+
+        /* --- CONTENEDOR Y GRID --- */
+        .container { max-width: 1000px; margin: 0 auto; padding: 60px 20px; }
+        
+        header { text-align: center; margin-bottom: 50px; }
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin: 0;
+            background: linear-gradient(135deg, #000000, #444444);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 40px 0 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--nav-bg);
+            border-left: 8px solid var(--orange);
+            padding-left: 15px;
+        }
+
+       .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    align-items: start; /* <--- ESTO EVITA QUE SE ESTIREN LAS DEMÁS */
+}
+
+        /* --- TARJETAS INTERACTIVAS (ACORDEÓN) --- */
+        .problem-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 6px 6px 0px var(--border-color);
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 10px 10px 0px var(--border-color);
+        }
+
+        .problem-card.hw { border-top: 10px solid #ef4444; }
+        .problem-card.sw { border-top: 10px solid #3b82f6; }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .problem-card h3 { margin: 0; font-size: 1.2rem; color: var(--nav-bg); }
+
+        .arrow-icon {
+            font-size: 1.5rem;
+            color: var(--orange);
+            transition: transform 0.3s ease;
+            font-weight: 900;
+        }
+
+        .category-badge {
+            font-size: 0.7rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            padding: 2px 8px;
+            border-radius: 5px;
+            background: #f1f5f9;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        /* Contenido oculto */
+        .extra-info {
+            max-height: 0;
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .problem-card.active .extra-info {
+            max-height: 500px;
+            opacity: 1;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .problem-card.active .arrow-icon {
+            transform: rotate(180deg);
+        }
+
+        .solution-box {
+            background: #f8fafc;
+            padding: 12px;
+            border-radius: 10px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            border: 1px dashed #cbd5e1;
+            color: var(--text-main);
+        }
+
+        .solution-box strong { color: var(--orange); }
+
+        footer { text-align: center; padding: 60px; background: var(--nav-bg); color: #ff9900; margin-top: 60px; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="devfit-logo-wrapper">
+        <div class="devfit-symbol"><span class="code-icon">&lt;/&gt;</span></div>
+        <div class="devfit-brand"><span class="text-dev">dev</span>Fit<span class="text-sh">.sh</span></div>
+    </a>
+    <div class="nav-links">
+        <a href="index.html">Inicio</a>
+        <a href="rutinasVarias.html">Rutinas</a>
+        <a href="problemasVarios.html">Problemas</a>
+        <a href="ergonomia.html">Ergonomía</a>
+    </div>
+</nav>
+
+<div class="container">
+    <header>
+        <h1>Troubleshooting.log</h1>
+        <p>// Debugging the Developer: Health & Mental Patches</p>
+    </header>
+
+    <div class="section-title">Hardware Issues (Físicos)</div>
+    <div class="grid">
+        <div class="problem-card hw" onclick="toggleCard(this)">
+            <div class="card-header">
+                <div>
+                    <span class="category-badge">Spine.critical</span>
+                    <h3>Dolor Lumbar y Cervical</h3>
+                </div>
+                <span class="arrow-icon">▾</span>
+            </div>
+            <p>Columna "bloqueada" por 8h+ de posición estática.</p>
+            <div class="extra-info">
+                <p>La inactividad prolongada deshidrata los discos intervertebrales. La gravedad y la mala postura (nerd neck) crean una carga desproporcionada en las vértebras C7 y L5.</p>
+                <div class="solution-box"><strong>Patch:</strong> Ejercicios de Movilidad cada 2 horas (Gato-Camello).</div>
+            </div>
+        </div>
+
+        <div class="problem-card hw" onclick="toggleCard(this)">
+            <div class="card-header">
+                <div>
+                    <span class="category-badge">System.sleep</span>
+                    <h3>Trastornos del Sueño</h3>
+                </div>
+                <span class="arrow-icon">▾</span>
+            </div>
+            <p>Ritmo circadiano alterado por despliegues nocturnos.</p>
+            <div class="extra-info">
+                <p>La luz azul de los monitores inhibe la producción de melatonina, engañando al cerebro para que piense que aún es de día, arruinando la fase REM profunda.</p>
+                <div class="solution-box"><strong>Patch:</strong> Filtros de luz azul y 15 min de sol al despertar.</div>
+            </div>
+        </div>
+
+        <div class="problem-card hw" onclick="toggleCard(this)">
+            <div class="card-header">
+                <div>
+                    <span class="category-badge">Input.processing</span>
+                    <h3>Mala Digestión</h3>
+                </div>
+                <span class="arrow-icon">▾</span>
+            </div>
+            <p>Comer frente a la pantalla ralentiza el metabolismo.</p>
+            <div class="extra-info">
+                <p>El estado de "alerta" mientras programas bloquea el sistema parasimpático necesario para una digestión eficiente, causando hinchazón y fatiga post-comida.</p>
+                <div class="solution-box"><strong>Patch:</strong> Zero-Screen Policy durante las comidas.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-title">Software Glitches (Mentales)</div>
+    <div class="grid">
+        <div class="problem-card sw" onclick="toggleCard(this)">
+            <div class="card-header">
+                <div>
+                    <span class="category-badge">Logic.error</span>
+                    <h3>Síndrome del Impostor</h3>
+                </div>
+                <span class="arrow-icon">▾</span>
+            </div>
+            <p>Miedo a ser "descubierto" como un fraude técnico.</p>
+            <div class="extra-info">
+                <p>En un entorno de aprendizaje infinito, es imposible saberlo todo. No saber algo no es un fallo, es un estado temporal antes del próximo commit.</p>
+                <div class="solution-box"><strong>Patch:</strong> Repasa tu historial de Git; tú resolviste eso.</div>
+            </div>
+        </div>
+
+        <div class="problem-card sw" onclick="toggleCard(this)">
+            <div class="card-header">
+                <div>
+                    <span class="category-badge">CPU.overheat</span>
+                    <h3>Agotamiento / Burnout</h3>
+                </div>
+                <span class="arrow-icon">▾</span>
+            </div>
+            <p>Cerebro en "overclock" constante sin enfriamiento.</p>
+            <div class="extra-info">
+                <p>El agotamiento crónico reduce la capacidad de abstracción. Un cerebro cansado produce código con más bugs, lo que genera más trabajo y más estrés.</p>
+                <div class="solution-box"><strong>Patch:</strong> Desconexión total de notificaciones el fin de semana.</div>
+            </div>
+        </div>
+
+        <div class="problem-card sw" onclick="toggleCard(this)">
+            <div class="card-header">
+                <div>
+                    <span class="category-badge">Async.hang</span>
+                    <h3>Parálisis por Análisis</h3>
+                </div>
+                <span class="arrow-icon">▾</span>
+            </div>
+            <p>Búsqueda de la solución "perfecta" sin escribir nada.</p>
+            <div class="extra-info">
+                <p>El perfeccionismo es el enemigo de la entrega. El código perfecto no existe, solo el código que escala y se puede refactorizar.</p>
+                <div class="solution-box"><strong>Patch:</strong> "Make it work, make it right, make it fast".</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <span style="color:white; font-weight:900;">DevFit.sh</span><br>
+    Maintenance Completed. Happy Coding.
+</footer>
+
+<script>
+    function toggleCard(card) {
+        // Cierra otras tarjetas al abrir una nueva
+        document.querySelectorAll('.problem-card').forEach(otherCard => {
+            if (otherCard !== card) otherCard.classList.remove('active');
+        });
+
+        // Alterna el estado de la tarjeta clickeada
+        card.classList.toggle('active');
+    }
+</script>
+
+</body>
+</html>

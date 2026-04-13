@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevFit | Rutinas de Entrenamiento</title>
+    <style>
+        :root {
+            --bg-color: rgb(202, 202, 202);
+            --card-bg: #ffffff;
+            --nav-bg: #0f172a;
+            --accent: #1e293b;
+            --hover-accent: #334155;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #000000;
+            --success-color: #059669;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* --- NAVEGACIÓN (Consistente) --- */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 1.5rem;
+            background: var(--nav-bg);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            color: #ff9900;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 8px;
+        }
+
+        nav a:hover {
+            color: white;
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* --- CONTENEDOR --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+header h1 {
+    font-size: 3.5rem;
+    margin: 0;
+    font-weight: 900;
+    /* 1. Definimos el degradado */
+    background: linear-gradient(135deg, #000 0%, #444 100%);
+    
+    /* 2. Aplicamos el recorte al texto (Estándar) */
+    background-clip: text;
+    
+    /* 3. Aplicamos el recorte para navegadores basados en Webkit (Chrome, Safari, Edge) */
+    -webkit-background-clip: text;
+    
+    /* 4. Hacemos que el color original del texto sea transparente para que se vea el fondo */
+    color: transparent; 
+    -webkit-text-fill-color: transparent; /* Refuerzo para algunos navegadores antiguos */
+    
+    letter-spacing: -2px;
+}
+
+        /* --- SELECTOR DE NIVEL --- */
+        .level-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .tab-btn {
+            background: white;
+            border: 2px solid var(--border-color);
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 4px 4px 0px var(--border-color);
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px var(--border-color);
+        }
+
+        .tab-btn.active {
+            background: #ff9900;
+            color: white;
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px var(--border-color);
+        }
+
+        /* --- TARJETAS DE RUTINA --- */
+        .routine-container {
+            display: grid;
+            gap: 30px;
+        }
+
+        .exercise-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 10px 10px 0px var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .exercise-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .main-exercise {
+            display: block;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #000;
+            margin-bottom: 8px;
+        }
+
+        .regression-box {
+            background: #f1f5f9;
+            padding: 12px 18px;
+            border-left: 4px solid var(--success-color);
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .regression-label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--success-color);
+        }
+
+        .regression-name {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .stats {
+            display: flex;
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            background: var(--nav-bg);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 15px;
+            min-width: 80px;
+        }
+
+        .stat-value {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #ff9900;
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+
+        /* --- FOOTER (Consistente) --- */
+        footer {
+            text-align: center;
+            padding: 80px 20px;
+            background: var(--nav-bg);
+            color: #ffd000;
+            margin-top: 80px;
+        }
+
+        .footer-logo {
+            color: white;
+            font-weight: 800;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#">Inicio</a>
+        <a href="#">Rutinas</a>
+        <a href="#">Problemas</a>
+        <a href="#">Ergonomía</a>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>Workout_Scripts</h1>
+            <p>// Select your hardware capability level</p>
+        </header>
+
+        <div class="level-tabs">
+            <button class="tab-btn">Nivel Bajo</button>
+            <button class="tab-btn active">Nivel Medio</button>
+            <button class="tab-btn">Nivel Avanzado</button>
+        </div>
+
+        <div class="routine-container">
+            <div class="exercise-card">
+                <div class="exercise-info">
+                    <span class="main-exercise">Flexiones de Brazos (Push-ups)</span>
+                    <div class="regression-box">
+                        <span class="regression-label">Alternativa Sencilla</span>
+                        <span class="regression-name">└─ Flexiones con rodillas apoyadas</span>
+                    </div>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-value">4</span>
+                        <span class="stat-label">Series</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">12</span>
+                        <span class="stat-label">Reps</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise-card">
+                <div class="exercise-info">
+                    <span class="main-exercise">Sentadilla Búlgara</span>
+                    <div class="regression-box">
+                        <span class="regression-label">Alternativa Sencilla</span>
+                        <span class="regression-name">└─ Sentadilla clásica con silla</span>
+                    </div>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-value">3</span>
+                        <span class="stat-label">Series</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">10</span>
+                        <span class="stat-label">Reps/P</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise-card">
+                <div class="exercise-info">
+                    <span class="main-exercise">Dominadas Pronas (Pull-ups)</span>
+                    <div class="regression-box">
+                        <span class="regression-label">Alternativa Sencilla</span>
+                        <span class="regression-name">└─ Remo invertido en mesa</span>
+                    </div>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-value">3</span>
+                        <span class="stat-label">Series</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">8</span>
+                        <span class="stat-label">Reps</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <span class="footer-logo">DevFit.sh</span>
+        <p>&copy; 2026 - Engineered for High Performance Humans</p>
+    </footer>
+
+</body>
+</html>

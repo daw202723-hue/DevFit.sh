@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevFit | High Volume Design</title>
+  <style>
+    :root {
+        --bg-color: #ffeaa7;
+        --card-bg: #ffffff;
+        --nav-bg: #0f172a; 
+        --text-main: #1e293b;
+        --text-muted: #64748b;
+        --border-color: #000000;
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: rgb(202, 202, 202);
+        margin: 0;
+    }
+
+    /* --- ESTO ES LO QUE HACE QUE EL MENÚ SEA IGUAL --- */
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.8rem 2rem; /* Exactamente igual a Ergonomía */
+        background: var(--nav-bg);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        height: 36px; /* Forzamos la misma altura de contenedor */
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 25px; /* Espacio entre Inicio, Rutinas, etc. */
+    }
+
+    nav a {
+        color: #ff9900;
+        text-decoration: none;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.85rem; /* Tamaño de fuente idéntico */
+        letter-spacing: 1px;
+    }
+
+    /* --- EL LOGO PARA QUE NO DEFORME EL MENÚ --- */
+    .devfit-logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Menos espacio entre icono y texto */
+    text-decoration: none !important; /* Quita subrayados de enlace */
+    padding: 0;
+}
+
+.devfit-symbol {
+    width: 32px; /* Reducido de 45px */
+    height: 32px; /* Reducido de 45px */
+    border: 2px solid #000000;
+    background-color: #ffffff;
+    border-radius: 40% 10% 40% 40%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2px 2px 0px #ff7a00; /* Sombra más pequeña */
+    transition: all 0.2s ease;
+}
+
+.code-icon {
+    color: #00d2ff;
+    font-family: 'Courier New', monospace;
+    font-weight: 900;
+    font-size: 0.75rem; /* Icono más pequeño */
+}
+
+.devfit-brand {
+    font-size: 1.3rem; /* Reducido de 1.8rem */
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: baseline;
+    text-transform: none; /* Evita que el logo se ponga en mayúsculas por el estilo general de nav a */
+}
+
+.text-dev { color: #ff7a00; }
+.text-sh {
+    color: #00d2ff;
+    font-size: 0.7rem;
+    font-family: 'Courier New', monospace;
+    margin-left: 1px;
+}
+
+/* Hover interactivo para todo el logo */
+.devfit-logo-wrapper:hover .devfit-symbol {
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0px #ff7a00;
+}
+        
+    /* --- ESTILOS DEL CUERPO DEL INDEX (Ajustados) --- */
+    .container { max-width: 1000px; margin: 0 auto; padding: 60px 20px; }
+    header { text-align: center; margin-bottom: 80px; }
+     header h1 {
+    font-size: 3.5rem;
+    margin: 0;
+    font-weight: 900;
+    /* 1. Definimos el degradado */
+    background: linear-gradient(135deg, #000 0%, #444 100%);
+    
+    /* 2. Aplicamos el recorte al texto (Estándar) */
+    background-clip: text;
+    
+    /* 3. Aplicamos el recorte para navegadores basados en Webkit (Chrome, Safari, Edge) */
+    -webkit-background-clip: text;
+    
+    /* 4. Hacemos que el color original del texto sea transparente para que se vea el fondo */
+    color: transparent; 
+    -webkit-text-fill-color: transparent; /* Refuerzo para algunos navegadores antiguos */
+    
+    letter-spacing: -2px;
+}
+    .highlight-box {
+        background: white;
+        border: 2px solid black;
+        padding: 40px;
+        border-radius: 24px;
+        box-shadow: 10px 10px 0px black;
+    }
+
+    .feature-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        list-style: none;
+        padding: 0;
+    }
+
+    .feature-item {
+        background: white;
+        border: 2px solid black;
+        padding: 25px;
+        border-radius: 20px;
+        box-shadow: 4px 4px 0px black;
+    }
+
+    .btn {
+        display: inline-block;
+        background: var(--nav-bg);
+        color: white;
+        padding: 15px 35px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 700;
+        box-shadow: 0 6px 0px black;
+    }
+    footer { text-align: center; padding: 60px; background: var(--nav-bg); color: #ff9900; margin-top: 60px; }
+</style>
+    
+</head>
+<body>
+
+   <nav>
+    <a href="index.html" class="devfit-logo-wrapper">
+        <div class="devfit-symbol">
+            <span class="code-icon">&lt;/&gt;</span>
+        </div>
+        <div class="devfit-brand">
+            <span class="text-dev">dev</span>Fit<span class="text-sh">.sh</span>
+        </div>
+    </a>
+
+    <div class="nav-links">
+        <a href="index.html">Inicio</a>
+        <a href="rutinasVarias.html">Rutinas</a>
+        <a href="problemasVarios.html">Problemas</a>
+        <a href="ergonomia.html">Ergonomía</a>
+    </div>
+</nav>
+
+    <div class="container">
+        
+        <header>
+            <h1>DevFit</h1>
+            <p>// Build Your Best Version</p>
+        </header>
+
+        <section>
+            <h2>01. El Concepto</h2>
+            <div class="highlight-box">
+                <p style="font-size: 1.2rem; margin: 0;">
+                    Entendemos el cuerpo como una <strong>arquitectura compleja</strong>. No se trata de "hacer ejercicio", sino de optimizar la infraestructura física para que tu mente pueda procesar código sin interrupciones por dolor o fatiga.
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <h2>02. Componentes</h2>
+            <ul class="feature-list">
+                <li class="feature-item">
+                    <strong>Refactor Postural</strong>
+                    Corrige vicios posicionales detectando patrones de tensión en cuello y hombros.
+                </li>
+                <li class="feature-item">
+                    <strong>Micro-Sprints</strong>
+                    Entrenamientos de alta densidad de 7 minutos que caben en cualquier "break".
+                </li>
+                <li class="feature-item">
+                    <strong>Bio-Fuels</strong>
+                    Guía de nutrición diseñada para evitar el lag mental después del almuerzo.
+                </li>
+            </ul>
+        </section>
+
+        <section class="cta-calc">
+            <h2>03. Diagnóstico</h2>
+            <p>Calcula tu Tasa Metabólica para entender cuánta energía necesita tu sistema operativo biológico cada día.</p>
+            <a href="TMB.html" class="btn">Calcular TMB</a>
+        </section>
+
+    </div>
+
+    <footer>
+        <span class="footer-logo">DevFit.sh</span>
+        <p>&copy; 2026 - Engineered for High Performance Humans</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevFit | Resistencia Nivel Bajo</title>
+    <style>
+        :root {
+            --bg-color: rgb(202, 202, 202);
+            --card-bg: #ffffff;
+            --nav-bg: #0f172a;
+            --text-main: #1e293b;
+            --border-color: #000000;
+            --orange: #00d2ff; /* Azul cian para Resistencia */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* --- NAVEGACIÓN --- */
+                   nav {
+    display: flex;
+    justify-content: space-between; /* Logo a la izquierda, links a la derecha */
+    align-items: center;
+    padding: 0.8rem 2rem; /* Reducimos el padding vertical */
+    background: var(--nav-bg);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* Contenedor de enlaces */
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    color: #ff9900;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem; /* Un poco más pequeño para legibilidad */
+    letter-spacing: 1px;
+}
+
+        .devfit-logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Menos espacio entre icono y texto */
+    text-decoration: none !important; /* Quita subrayados de enlace */
+    padding: 0;
+}
+
+.devfit-symbol {
+    width: 32px; /* Reducido de 45px */
+    height: 32px; /* Reducido de 45px */
+    border: 2px solid #000000;
+    background-color: #ffffff;
+    border-radius: 40% 10% 40% 40%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2px 2px 0px #ff7a00; /* Sombra más pequeña */
+    transition: all 0.2s ease;
+}
+
+.code-icon {
+    color: #00d2ff;
+    font-family: 'Courier New', monospace;
+    font-weight: 900;
+    font-size: 0.75rem; /* Icono más pequeño */
+}
+
+.devfit-brand {
+    font-size: 1.3rem; /* Reducido de 1.8rem */
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: baseline;
+    text-transform: none; /* Evita que el logo se ponga en mayúsculas por el estilo general de nav a */
+}
+
+.text-dev { color: #ff7a00; }
+.text-sh {
+    color: #00d2ff;
+    font-size: 0.7rem;
+    font-family: 'Courier New', monospace;
+    margin-left: 1px;
+}
+
+/* Hover interactivo para todo el logo */
+.devfit-logo-wrapper:hover .devfit-symbol {
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0px #ff7a00;
+}
+
+
+        .container { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
+        
+        header { text-align: center; margin-bottom: 50px; }
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin: 0;
+            background: linear-gradient(135deg, #000000, #444444);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .selector-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 10px 10px 0px var(--border-color);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .day-btn {
+            background: white;
+            border: 2px solid var(--border-color);
+            padding: 15px;
+            border-radius: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 4px 4px 0px var(--border-color);
+        }
+
+        .day-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px var(--border-color); }
+        .day-btn.active { background: var(--orange); color: white; transform: translate(2px, 2px); box-shadow: 0px 0px 0px; }
+
+        .routine-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .split-card {
+            background: white;
+            border: 2px solid var(--border-color);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            box-shadow: 8px 8px 0px var(--border-color);
+        }
+
+        .split-title {
+            display: inline-block;
+            background: var(--nav-bg);
+            color: var(--orange);
+            padding: 5px 15px;
+            border-radius: 8px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .exercise-item {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            border-left: 4px solid var(--orange);
+        }
+
+        .exercise-item strong { display: block; font-size: 1.1rem; }
+        .exercise-item span { color: #64748b; font-size: 0.9rem; font-family: monospace; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        footer { text-align: center; padding: 60px; background: var(--nav-bg); color: var(--orange); margin-top: 60px; }
+    </style>
+</head>
+<body>
+
+    <nav>
+    <a href="index.html" class="devfit-logo-wrapper">
+        <div class="devfit-symbol">
+            <span class="code-icon">&lt;/&gt;</span>
+        </div>
+        <div class="devfit-brand">
+            <span class="text-dev">dev</span>Fit<span class="text-sh">.sh</span>
+        </div>
+    </a>
+
+    <div class="nav-links">
+        <a href="index.html">Inicio</a>
+        <a href="rutinasVarias.html">Volver al Selector</a>
+    </div>
+</nav>
+
+    <div class="container">
+        <header>
+            <h1>Resistencia_Bajo.exe</h1>
+            <p>// Buffer Management: Heart Rate & Aerobic Capacity</p>
+        </header>
+
+        <div class="selector-card">
+            <h3>¿Cuántos días de cardio/resistencia prefieres?</h3>
+            <div class="days-grid">
+                <button class="day-btn" onclick="showRoutine(2, this)">2 DÍAS</button>
+                <button class="day-btn" onclick="showRoutine(3, this)">3 DÍAS</button>
+                <button class="day-btn" onclick="showRoutine(4, this)">4 DÍAS</button>
+            </div>
+        </div>
+
+        <div id="routine-display"></div>
+    </div>
+
+    <footer>
+        <span style="color:white; font-weight:900;">DevFit.sh</span><br>
+        Low Level Aerobic Optimization
+    </footer>
+
+    <script>
+        const routines = {
+            2: `
+                <div class="routine-section" style="display:block">
+                    <div class="split-card">
+                        <span class="split-title">Día 1: Circuito Aeróbico Suave</span>
+                        <div class="exercise-item">
+                            <strong>Marcha en el sitio con rodillas altas</strong>
+                            <span>3 series x 45 seg // Mantén un ritmo constante.</span>
+                        </div>
+                        <div class="exercise-item">
+                            <strong>Jumping Jacks (Impacto bajo)</strong>
+                            <span>3 series x 30 seg // Abre y cierra brazos y piernas sin saltar si es necesario.</span>
+                        </div>
+                        <div class="exercise-item">
+                            <strong>Caminar rápido</strong>
+                            <span>20 minutos // Al aire libre o por casa.</span>
+                        </div>
+                    </div>
+                    <div class="split-card">
+                        <span class="split-title">Día 2: Resistencia Muscular</span>
+                        <div class="exercise-item">
+                            <strong>Sentadillas constantes (ritmo lento)</strong>
+                            <span>3 series x 1 minuto // No busques potencia, busca fluidez.</span>
+                        </div>
+                        <div class="exercise-item">
+                            <strong>Flexiones en pared (altas repeticiones)</strong>
+                            <span>3 series x 20 reps // Mejora el aguante del tren superior.</span>
+                        </div>
+                    </div>
+                </div>`,
+            3: `
+                <div class="routine-section" style="display:block">
+                    <div class="split-card"><span class="split-title">Día 1: Intervalos Aeróbicos</span>
+                        <div class="exercise-item"><strong>Skipping bajo</strong><span>4 x 30 seg (Descanso 30 seg)</span></div>
+                        <div class="exercise-item"><strong>Desplazamientos laterales</strong><span>4 x 45 seg</span></div>
+                    </div>
+                    <div class="split-card"><span class="split-title">Día 2: Recuperación Activa</span>
+                        <div class="exercise-item"><strong>Caminata a ritmo medio</strong><span>30 minutos</span></div>
+                        <div class="exercise-item"><strong>Movilidad articular completa</strong><span>10 minutos</span></div>
+                    </div>
+                    <div class="split-card"><span class="split-title">Día 3: Circuito de Tiempo</span>
+                        <div class="exercise-item"><strong>Escaladores (Mountain Climbers) lentos</strong><span>3 x 40 seg</span></div>
+                        <div class="exercise-item"><strong>Puente de glúteo isométrico</strong><span>3 x 45 seg</span></div>
+                    </div>
+                </div>`,
+            4: `
+                <div class="routine-section" style="display:block">
+                    <div class="split-card"><span class="split-title">Día 1: Cardio Base</span>
+                        <div class="exercise-item"><strong>Paseo enérgico</strong><span>25 minutos</span></div>
+                    </div>
+                    <div class="split-card"><span class="split-title">Día 2: Resistencia Upper Body</span>
+                        <div class="exercise-item"><strong>Sombra de boxeo (Shadow Boxing)</strong><span>4 x 1 minuto // Lanza golpes al aire con ritmo.</span></div>
+                        <div class="exercise-item"><strong>Rotaciones externas e internas de brazos</strong><span>3 x 1 min</span></div>
+                    </div>
+                    <div class="split-card"><span class="split-title">Día 3: Cardio Base</span>
+                        <div class="exercise-item"><strong>Subir y bajar escaleras</strong><span>10-15 minutos constantes</span></div>
+                    </div>
+                    <div class="split-card"><span class="split-title">Día 4: Circuito Final</span>
+                        <div class="exercise-item"><strong>Burpees adaptados (sin salto)</strong><span>3 x 8 reps</span></div>
+                        <div class="exercise-item"><strong>Plancha frontal</strong><span>3 x 30 seg</span></div>
+                    </div>
+                </div>`
+        };
+
+        function showRoutine(days, btn) {
+            document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('routine-display').innerHTML = routines[days];
+            window.scrollTo({
+                top: document.getElementById('routine-display').offsetTop - 100,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</body>
+</html>

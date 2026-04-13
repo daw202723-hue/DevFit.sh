@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo devFit.sh</title>
+    <style>
+        :root {
+            --nav-bg: #0f172a;
+            --orange: #ff7a00;
+            --cyan: #00d2ff;
+        }
+
+        body {
+            background-color: var(--nav-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* --- LOGO CONTENEDOR --- */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .logo-container:hover {
+            transform: scale(1.05);
+        }
+
+        /* --- SÍMBOLO ICONO (D + Bicep + Code) --- */
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background-color: transparent;
+            border: 4px solid var(--orange);
+            border-radius: 50% 10% 50% 50%; /* Forma de D/Bicep */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            box-shadow: 4px 4px 0px var(--orange);
+        }
+
+        .logo-icon::before {
+            content: '</>';
+            color: var(--cyan);
+            font-family: 'Courier New', monospace;
+            font-weight: 900;
+            font-size: 1.2rem;
+        }
+
+        /* --- TEXTO DEL LOGO --- */
+        .logo-text {
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: white;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .logo-text span {
+            color: var(--orange);
+        }
+
+        .logo-text .sh {
+            font-size: 1rem;
+            color: var(--cyan);
+            font-family: 'Courier New', monospace;
+            margin-left: 5px;
+            text-transform: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="logo-container">
+        <div class="logo-icon"></div>
+        <div class="logo-text">
+            <span>dev</span>Fit<span class="sh">.sh</span>
+        </div>
+    </div>
+
+</body>
+</html>
