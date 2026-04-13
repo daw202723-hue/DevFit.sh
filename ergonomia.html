@@ -24,85 +24,77 @@
         }
 
         /* --- NAVEGACIÓN --- */
-       nav {
-    display: flex;
-    justify-content: space-between; /* Logo a la izquierda, links a la derecha */
-    align-items: center;
-    padding: 0.8rem 2rem; /* Reducimos el padding vertical */
-    background: var(--nav-bg);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
+    nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 2rem;
+            background: var(--nav-bg);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-/* Contenedor de enlaces */
-.nav-links {
-    display: flex;
-    gap: 25px;
-}
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
 
-nav a {
-    color: #ff9900;
-    text-decoration: none;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.85rem; /* Un poco más pequeño para legibilidad */
-    letter-spacing: 1px;
-}
+        nav a {
+            color: #ff9900;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
 
-/* --- LOGO COMPACTO E INTERACTIVO --- */
-.devfit-logo-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 8px; /* Menos espacio entre icono y texto */
-    text-decoration: none !important; /* Quita subrayados de enlace */
-    padding: 0;
-}
+        .devfit-logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none !important;
+        }
 
-.devfit-symbol {
-    width: 32px; /* Reducido de 45px */
-    height: 32px; /* Reducido de 45px */
-    border: 2px solid #000000;
-    background-color: #ffffff;
-    border-radius: 40% 10% 40% 40%; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 2px 2px 0px #ff7a00; /* Sombra más pequeña */
-    transition: all 0.2s ease;
-}
+        .devfit-symbol {
+            width: 32px;
+            height: 32px;
+            border: 2px solid #000000;
+            background-color: #ffffff;
+            border-radius: 40% 10% 40% 40%; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 2px 2px 0px #ff7a00;
+            transition: all 0.2s ease;
+        }
 
-.code-icon {
-    color: #00d2ff;
-    font-family: 'Courier New', monospace;
-    font-weight: 900;
-    font-size: 0.75rem; /* Icono más pequeño */
-}
+        .code-icon {
+            color: #00d2ff;
+            font-family: 'Courier New', monospace;
+            font-weight: 900;
+            font-size: 0.75rem;
+        }
 
-.devfit-brand {
-    font-size: 1.3rem; /* Reducido de 1.8rem */
-    font-weight: 900;
-    color: #ffffff;
-    letter-spacing: -0.5px;
-    display: flex;
-    align-items: baseline;
-    text-transform: none; /* Evita que el logo se ponga en mayúsculas por el estilo general de nav a */
-}
+        .devfit-brand {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: baseline;
+            text-transform: none;
+        }
 
-.text-dev { color: #ff7a00; }
-.text-sh {
-    color: #00d2ff;
-    font-size: 0.7rem;
-    font-family: 'Courier New', monospace;
-    margin-left: 1px;
-}
+        .text-dev { color: #ff7a00; }
+        .text-sh { color: #00d2ff; font-size: 0.7rem; font-family: 'Courier New', monospace; margin-left: 1px; }
 
-/* Hover interactivo para todo el logo */
-.devfit-logo-wrapper:hover .devfit-symbol {
-    transform: translate(-1px, -1px);
-    box-shadow: 4px 4px 0px #ff7a00;
-}
+        .devfit-logo-wrapper:hover .devfit-symbol {
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0px #ff7a00;
+        }
+
         .container { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
         
         header { text-align: center; margin-bottom: 50px; }
@@ -194,6 +186,7 @@ nav a {
 </head>
 <body>
 
+    
      <nav>
     <a href="index.html" class="devfit-logo-wrapper">
         <div class="devfit-symbol">
@@ -211,7 +204,6 @@ nav a {
         <a href="ergonomia.html">Ergonomía</a>
     </div>
 </nav>
-
 
     <div class="container">
         <header>

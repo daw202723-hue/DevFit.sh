@@ -3,202 +3,237 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevFit | Selector de Ruta</title>
+    <title>DevFit | Routine Router</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --bg-color: rgb(202, 202, 202);
-            --card-bg: #ffffff;
-            --nav-bg: #0f172a;
-            --text-main: #1e293b;
-            --border-color: #000000;
-            --orange: #ff9900;
+            --primary: #ff7a00;
+            --primary-dark: #e66e00;
+            --secondary: #00d2ff;
+            --bg-dark: #0f172a;
+            --bg-light: #f8fafc;
+            --card-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --neon-glow: 0 0 15px rgba(255, 122, 0, 0.3);
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background-color: var(--bg-light);
             margin: 0;
+            color: #1e293b;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* --- NAVEGACIÓN --- */
-      nav {
-    display: flex;
-    justify-content: space-between; /* Logo a la izquierda, links a la derecha */
-    align-items: center;
-    padding: 0.8rem 2rem; /* Reducimos el padding vertical */
-    background: var(--nav-bg);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-/* Contenedor de enlaces */
-.nav-links {
-    display: flex;
-    gap: 25px;
-}
-
-nav a {
-    color: #ff9900;
-    text-decoration: none;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.85rem; /* Un poco más pequeño para legibilidad */
-    letter-spacing: 1px;
-}
-
-/* --- LOGO COMPACTO E INTERACTIVO --- */
-.devfit-logo-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 8px; /* Menos espacio entre icono y texto */
-    text-decoration: none !important; /* Quita subrayados de enlace */
-    padding: 0;
-}
-
-.devfit-symbol {
-    width: 32px; /* Reducido de 45px */
-    height: 32px; /* Reducido de 45px */
-    border: 2px solid #000000;
-    background-color: #ffffff;
-    border-radius: 40% 10% 40% 40%; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 2px 2px 0px #ff7a00; /* Sombra más pequeña */
-    transition: all 0.2s ease;
-}
-
-.code-icon {
-    color: #00d2ff;
-    font-family: 'Courier New', monospace;
-    font-weight: 900;
-    font-size: 0.75rem; /* Icono más pequeño */
-}
-
-.devfit-brand {
-    font-size: 1.3rem; /* Reducido de 1.8rem */
-    font-weight: 900;
-    color: #ffffff;
-    letter-spacing: -0.5px;
-    display: flex;
-    align-items: baseline;
-    text-transform: none; /* Evita que el logo se ponga en mayúsculas por el estilo general de nav a */
-}
-
-.text-dev { color: #ff7a00; }
-.text-sh {
-    color: #00d2ff;
-    font-size: 0.7rem;
-    font-family: 'Courier New', monospace;
-    margin-left: 1px;
-}
-
-/* Hover interactivo para todo el logo */
-.devfit-logo-wrapper:hover .devfit-symbol {
-    transform: translate(-1px, -1px);
-    box-shadow: 4px 4px 0px #ff7a00;
-}
-
-        /* --- CONTENEDOR --- */
-        .container { 
-            max-width: 900px; 
-            margin: 0 auto; 
-            padding: 60px 20px; 
+        /* --- NAVEGACIÓN UNIFICADA --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: 70px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
-        
-        header { text-align: center; margin-bottom: 60px; }
-        
-        header h1 {
-            font-size: 4rem;
+
+        .devfit-logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .devfit-brand {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* --- HEADER SECCIÓN --- */
+        .router-header {
+            background: var(--bg-dark);
+            padding: 100px 20px 150px;
+            text-align: center;
+            color: white;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+
+        .router-header h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
             font-weight: 900;
             margin: 0;
-            background: linear-gradient(135deg, #000000, #444444);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -2px;
-        }
-
-        /* --- BOX DE SELECCIÓN --- */
-        .selector-card {
-            background: var(--card-bg);
-            border: 2px solid var(--border-color);
-            padding: 50px;
-            border-radius: 30px;
-            box-shadow: 12px 12px 0px var(--border-color);
-            margin-bottom: 50px;
-            text-align: center;
-        }
-
-        h2 {
-            font-size: 1.8rem;
-            font-weight: 800;
-            margin-top: 0;
-            margin-bottom: 30px;
+            letter-spacing: -3px;
             text-transform: uppercase;
         }
 
+        .router-header p {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--secondary);
+            margin-top: 15px;
+            letter-spacing: 2px;
+            font-size: 1rem;
+        }
+
+        /* --- CONTENEDOR SELECTORES --- */
+        .container {
+            max-width: 1000px;
+            margin: -80px auto 0;
+            padding: 0 20px 100px;
+            position: relative;
+        }
+
+        .selector-card {
+            background: white;
+            padding: 60px 40px;
+            border-radius: 4px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 40px;
+            border-left: 8px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .selector-card::after {
+            content: "PATH_FINDER";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: rgba(0,0,0,0.1);
+            letter-spacing: 2px;
+        }
+
+        .selector-card h2 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--primary);
+            font-weight: 900;
+            margin-bottom: 30px;
+        }
+
+        /* --- GRID DE BOTONES --- */
         .btn-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
         }
 
-        /* --- BOTONES CON VOLUMEN --- */
         .action-btn {
-            background: white;
-            border: 2px solid var(--border-color);
-            padding: 25px;
-            border-radius: 20px;
-            font-weight: 800;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 6px 6px 0px var(--border-color);
+            background: var(--bg-light);
+            border: 1px solid #e2e8f0;
+            padding: 30px 20px;
+            font-weight: 900;
+            font-size: 1.2rem;
             text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--bg-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: 1px;
+            position: relative;
         }
 
         .action-btn:hover {
-            transform: translate(-3px, -3px);
-            box-shadow: 9px 9px 0px var(--border-color);
-            background: #f8fafc;
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            background: white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
         }
 
         .action-btn.active {
-            background: var(--orange);
+            background: var(--primary);
             color: white;
-            transform: translate(4px, 4px);
-            box-shadow: 0px 0px 0px;
+            border-color: var(--primary);
+            box-shadow: var(--neon-glow);
         }
 
-        /* --- SECCIÓN DE NIVEL (OCULTA POR DEFECTO) --- */
+        .btn-desc {
+            font-size: 0.7rem;
+            font-weight: 400;
+            opacity: 0.7;
+            text-transform: none;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* --- NIVEL SELECTION --- */
         #level-selection {
             display: none;
-            animation: slideUp 0.5s ease forwards;
+            animation: slideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            border-left-color: var(--secondary);
         }
 
         @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        footer { 
-            text-align: center; 
-            padding: 80px; 
-            background: var(--nav-bg); 
-            color: #ff9900; 
-            margin-top: 100px; 
+        /* --- FOOTER UNIFICADO --- */
+        footer {
+            background: #000;
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
         }
+
+        .footer-brand {
+            font-weight: 900;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* Efecto de pulso para el botón activo */
+        .active::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--primary);
+            animation: pulse 1.5s infinite;
+            top: 0;
+            left: 0;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            100% { transform: scale(1.1); opacity: 0; }
+        }
+
     </style>
 </head>
 <body>
 
-     <nav>
+      <nav>
     <a href="index.html" class="devfit-logo-wrapper">
         <div class="devfit-symbol">
             <span class="code-icon">&lt;/&gt;</span>
@@ -216,73 +251,90 @@ nav a {
     </div>
 </nav>
 
-    <div class="container">
-        <header>
-            <h1>Routine_Router</h1>
-            <p>// Select parameters to boot the workout</p>
-        </header>
+    <header class="router-header">
+        <h1>ROUTINE_<span>ROUTER</span></h1>
+        <p>// SET_PARAMETERS && EXECUTE_WORKOUT</p>
+    </header>
 
+    <div class="container">
         <div class="selector-card">
-            <h2>01. Selecciona Objetivo</h2>
+            <h2>01. SELECT_GOAL</h2>
             <div class="btn-grid">
-                <button class="action-btn" onclick="setGoal('fuerza', this)">Fuerza</button>
-                <button class="action-btn" onclick="setGoal('resistencia', this)">Resistencia</button>
-                <button class="action-btn" onclick="setGoal('movilidad', this)">Movilidad</button>
+                <button class="action-btn" onclick="setGoal('fuerza', this)">
+                    FUERZA
+                    <span class="btn-desc">Power & Stability</span>
+                </button>
+                <button class="action-btn" onclick="setGoal('resistencia', this)">
+                    RESISTENCIA
+                    <span class="btn-desc">High Endurance</span>
+                </button>
+                <button class="action-btn" onclick="setGoal('movilidad', this)">
+                    MOVILIDAD
+                    <span class="btn-desc">Flex & Recovery</span>
+                </button>
             </div>
         </div>
 
         <div id="level-selection" class="selector-card">
-            <h2>02. Selecciona Nivel</h2>
+            <h2 style="color: var(--secondary);">02. SELECT_LEVEL</h2>
             <div class="btn-grid">
-                <button class="action-btn" onclick="redirect('bajo')">Bajo</button>
-                <button class="action-btn" onclick="redirect('medio')">Medio</button>
-                <button class="action-btn" onclick="redirect('alto')">Alto</button>
+                <button class="action-btn" onclick="redirect('bajo')" style="border-bottom: 4px solid #22c55e;">
+                    BAJO
+                    <span class="btn-desc">Entry Level (1.0)</span>
+                </button>
+                <button class="action-btn" onclick="redirect('medio')" style="border-bottom: 4px solid #eab308;">
+                    MEDIO
+                    <span class="btn-desc">Advanced (2.5)</span>
+                </button>
+                <button class="action-btn" onclick="redirect('alto')" style="border-bottom: 4px solid #ef4444;">
+                    ALTO
+                    <span class="btn-desc">Overclocked (4.0)</span>
+                </button>
             </div>
         </div>
     </div>
 
     <footer>
-        <span style="color:white; font-weight:900; font-size:1.5rem;">DevFit.sh</span>
-        <p>&copy; 2026 - High Performance Human Hardware</p>
+        <div class="footer-brand">DEV<span style="color:var(--primary)">FIT</span></div>
+        <p>&copy; 2026 - ENGINEERED FOR HIGH PERFORMANCE HUMANS</p>
+        <p style="color: #444; margin-top: 20px;">V.3.1.0 // ROUTER_MODULE</p>
     </footer>
 
 <script>
-    // Usamos una variable global muy clara
     var objetivoGlobal = "";
 
     function setGoal(goal, btn) {
-        // 1. Guardamos el objetivo
         objetivoGlobal = goal;
         
-        // 2. Estética: Quitar 'active' de los hermanos y ponerlo en este
-        var botones = btn.parentElement.getElementsByClassName('action-btn');
-        for (var i = 0; i < botones.length; i++) {
-            botones[i].classList.remove('active');
-        }
+        // Estética: Reset de botones
+        var botones = document.querySelectorAll('.action-btn');
+        botones.forEach(b => b.classList.remove('active'));
+        
+        // Activar el seleccionado
         btn.classList.add('active');
 
-        // 3. Mostrar la siguiente sección
-        document.getElementById('level-selection').style.display = 'block';
+        // Mostrar siguiente paso con delay suave
+        const levelSection = document.getElementById('level-selection');
+        levelSection.style.display = 'block';
         
-        // 4. Bajar la pantalla automáticamente
-        window.scrollTo({
-            top: document.getElementById('level-selection').offsetTop,
-            behavior: 'smooth'
-        });
+        // Scroll suave hacia abajo
+        setTimeout(() => {
+            levelSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
     }
 
     function redirect(nivel) {
-        // Si el usuario no eligió objetivo, avisamos
         if (objetivoGlobal === "") {
-            alert("Por favor, selecciona primero un objetivo (Fuerza, Resistencia o Movilidad)");
+            alert("ERROR: SELECT_GOAL_BEFORE_BOOTING");
             return;
         }
 
-        // CONSTRUCCIÓN DE LA RUTA
-        // Si eliges Fuerza y Bajo, esto crea: "fuerza_bajo.html"
+        // Construcción de la ruta: "fuerza_bajo.html"
         var urlFinal = objetivoGlobal + "_" + nivel + ".html";
-
-        // REDIRECCIÓN DIRECTA
+        
+        // Efecto de parpadeo antes de redirigir (opcional)
+        document.body.style.opacity = "0.5";
+        
         window.location = urlFinal;
     }
 </script>
