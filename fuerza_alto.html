@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevFit | Movilidad Nivel Bajo (Reset)</title>
+    <title>DevFit | Fuerza Nivel Alto (Overclock)</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary: #2ed573; /* Verde para Nivel Bajo / Recuperación */
+            --primary: #ff4757; /* Rojo para Nivel Alto */
             --secondary: #00d2ff;
             --bg-dark: #0f172a;
             --bg-light: #f8fafc;
@@ -54,7 +54,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 2px 2px 0px var(--primary);
+            box-shadow: 2px 2px 0px #ff4757;
             transition: all 0.2s ease;
         }
 
@@ -152,7 +152,7 @@
         }
 
         .day-btn:hover { border-color: var(--primary); color: var(--primary); }
-        .day-btn.active { background: var(--primary); color: #000; border-color: var(--primary); }
+        .day-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
 
         /* --- ROUTINE STYLES --- */
         .split-card {
@@ -223,97 +223,106 @@
 </nav>
 
 <header>
-    <h1>MOVILIDAD_<span>BAJO</span>.EXE</h1>
-    <p>// MAINTENANCE_MODE: PREVENTIVE_CARE</p>
+    <h1>FUERZA_<span>ALTO</span>.EXE</h1>
+    <p>// SYSTEM_OVERCLOCK: MAXIMUM_RESISTANCE</p>
 </header>
 
 <div class="container">
     <div class="ads-box ads-top">Publicidad AdSense</div>
 
     <div class="selector-card">
-        <h3 style="font-weight: 900; margin-top: 0;">RECOVERY_SELECTOR</h3>
-        <p style="color: #64748b; font-size: 0.9rem;">Rutinas breves para eliminar la rigidez tras horas de código:</p>
+        <h3 style="font-weight: 900; margin-top: 0;">WORKLOAD_SELECTOR</h3>
+        <p style="color: #64748b; font-size: 0.9rem;">Selecciona la frecuencia de entrenamiento para desplegar el script:</p>
         <div class="days-grid">
-            <button class="day-btn" onclick="showRoutine(2, this)">2_SESSIONS</button>
-            <button class="day-btn" onclick="showRoutine(3, this)">3_SESSIONS</button>
-            <button class="day-btn" onclick="showRoutine(4, this)">4_SESSIONS</button>
+            <button class="day-btn" onclick="showRoutine(2, this)">2_DAYS</button>
+            <button class="day-btn" onclick="showRoutine(3, this)">3_DAYS</button>
+            <button class="day-btn" onclick="showRoutine(4, this)">4_DAYS</button>
         </div>
     </div>
 
     <div id="routine-display">
-    </div>
+        </div>
 
     <div class="ads-box ads-top">Publicidad AdSense</div>
 </div>
 
 <footer>
     <div style="font-weight: 900; font-size: 1.5rem;">DEV<span style="color:var(--primary)">FIT</span>.SH</div>
-    <p>&copy; 2026 - LEVEL: SUSTAINABLE_DEVELOPMENT</p>
+    <p>&copy; 2026 - LEVEL: HIGH_PERFORMANCE_ATHLETE</p>
 </footer>
 
 <script>
     const routines = {
         2: `
             <div class="split-card">
-                <span class="split-title">SESIÓN A: DESKTOP RELIEF</span>
+                <span class="split-title">DÍA 01: FULL BODY HEAVY (EMPUJE)</span>
                 <div class="exercise-item">
-                    <strong>Círculos de Cuello Controlados</strong>
-                    <span>2 series x 10 círculos // Movimiento muy lento y fluido.</span>
+                    <strong>Flexiones Archer o a una mano</strong>
+                    <span>4 series x 8-10 reps // Intensidad unilateral extrema.</span>
                 </div>
                 <div class="exercise-item">
-                    <strong>Estiramiento de Muñeca (Mouse Hand)</strong>
-                    <span>3 series x 30 seg // Estirar flexores y extensores.</span>
+                    <strong>Sentadilla Búlgara Pesada</strong>
+                    <span>4 series x 10 reps // Carga máxima con mancuernas.</span>
                 </div>
                 <div class="exercise-item">
-                    <strong>Rotación Torácica en Silla</strong>
-                    <span>3 series x 10 por lado // Mejora la postura de la espalda alta.</span>
+                    <strong>Press Militar de Pie</strong>
+                    <span>4 series x 8 reps // Control de core y estabilidad.</span>
                 </div>
             </div>
             <div class="split-card">
-                <span class="split-title">SESIÓN B: LOWER BODY UNLOCK</span>
+                <span class="split-title">DÍA 02: FULL BODY HEAVY (TRACCIÓN)</span>
                 <div class="exercise-item">
-                    <strong>Estiramiento de Glúteo Sentado</strong>
-                    <span>3 series x 45 seg // Alivia la presión lumbar.</span>
+                    <strong>Remo con Mancuerna Pesada</strong>
+                    <span>4 series x 8 reps // Tempo 3-0-1 (3s bajada).</span>
                 </div>
                 <div class="exercise-item">
-                    <strong>Zancada con Apertura de Pecho</strong>
-                    <span>3 series x 10 reps // Abre cadera y caja torácica.</span>
+                    <strong>Peso Muerto Rumano Unilateral</strong>
+                    <span>4 series x 10 reps // Demanda de cadena posterior.</span>
+                </div>
+                <div class="exercise-item">
+                    <strong>Plancha con Lastre</strong>
+                    <span>4 series x 60 seg // Resistencia abdominal bajo carga.</span>
                 </div>
             </div>`,
         3: `
             <div class="split-card">
-                <span class="split-title">DÍA 01: POSTURE RESET</span>
-                <div class="exercise-item"><strong>Aperturas de Pecho en Puerta</strong><span>3x30 seg</span></div>
-                <div class="exercise-item"><strong>Chin Tucks (Doble mentón)</strong><span>3x15 reps</span></div>
+                <span class="split-title">DÍA 01: PUSH (ESTRUCTURA)</span>
+                <div class="exercise-item"><strong>Floor Press Pesado</strong><span>4x8 reps</span></div>
+                <div class="exercise-item"><strong>Pike Pushups Elevadas</strong><span>4x10 reps</span></div>
+                <div class="exercise-item"><strong>Fondos Lastrados</strong><span>3x12 reps</span></div>
             </div>
             <div class="split-card">
-                <span class="split-title">DÍA 02: HIP MOBILITY</span>
-                <div class="exercise-item"><strong>Estiramiento del Psoas</strong><span>3x40 seg por pierna</span></div>
-                <div class="exercise-item"><strong>Círculos de Cadera de Pie</strong><span>3x15 reps</span></div>
+                <span class="split-title">DÍA 02: PULL (DENSIDAD)</span>
+                <div class="exercise-item"><strong>Remo Pendlay Mancuernas</strong><span>4x10 reps</span></div>
+                <div class="exercise-item"><strong>Facepulls Pesados</strong><span>4x15 reps</span></div>
+                <div class="exercise-item"><strong>Curl Martillo</strong><span>3x12 reps</span></div>
             </div>
             <div class="split-card">
-                <span class="split-title">DÍA 03: SPINE DECOMPRESSION</span>
-                <div class="exercise-item"><strong>Posición del Gato (Cat-Cow)</strong><span>3x12 reps</span></div>
-                <div class="exercise-item"><strong>Posición del Niño (Child's Pose)</strong><span>2 min mantenidos</span></div>
+                <span class="split-title">DÍA 03: LEGS & CORE</span>
+                <div class="exercise-item"><strong>Zancadas Explosivas</strong><span>4x10 por pierna</span></div>
+                <div class="exercise-item"><strong>Puente Glúteo Unilateral</strong><span>4x12 reps</span></div>
+                <div class="exercise-item"><strong>Hollow Body Rock</strong><span>4x45 seg</span></div>
             </div>`,
         4: `
             <div class="split-card">
-                <span class="split-title">SESSION 01: CERVICAL & SHOULDERS</span>
-                <div class="exercise-item"><strong>Retracciones Escapulares</strong><span>3x12 reps</span></div>
+                <span class="split-title">DÍA 01: TORSO PUSH POWER</span>
+                <div class="exercise-item"><strong>Push-ups con Pausa (2s)</strong><span>4x12 reps</span></div>
+                <div class="exercise-item"><strong>Press Arnold Sentado</strong><span>4x10 reps</span></div>
             </div>
             <div class="split-card">
-                <span class="split-title">SESSION 02: FOREARM & WRISTS</span>
-                <div class="exercise-item"><strong>Masaje con pelota/mano en antebrazo</strong><span>2 min por lado</span></div>
+                <span class="split-title">DÍA 02: LEGS (QUADS FOCUS)</span>
+                <div class="exercise-item"><strong>Sentadilla Goblet Pausa</strong><span>4x12 reps</span></div>
+                <div class="exercise-item"><strong>Sissy Squat Asistida</strong><span>3x15 reps</span></div>
             </div>
             <div class="split-card">
-                <span class="split-title">SESSION 03: CORE & LUMBAR CALM</span>
-                <div class="exercise-item"><strong>Respiración Diafragmática</strong><span>5 min</span></div>
-                <div class="exercise-item"><strong>Giro Espinal Tumbado</strong><span>3x30 seg por lado</span></div>
+                <span class="split-title">DÍA 03: TORSO PULL POWER</span>
+                <div class="exercise-item"><strong>Remo Renegado</strong><span>4x10 por brazo</span></div>
+                <div class="exercise-item"><strong>Pull-apart Banda Fuerte</strong><span>4x20 reps</span></div>
             </div>
             <div class="split-card">
-                <span class="split-title">SESSION 04: LOWER EXTREMITIES</span>
-                <div class="exercise-item"><strong>Estiramiento de Isquios en Silla</strong><span>3x45 seg</span></div>
-                <div class="exercise-item"><strong>Movilidad de Tobillos</strong><span>3x15 círculos</span></div>
+                <span class="split-title">DÍA 04: LEGS (POSTERIOR/CORE)</span>
+                <div class="exercise-item"><strong>Peso Muerto Rumano Pesado</strong><span>4x10 reps</span></div>
+                <div class="exercise-item"><strong>L-Sit (Suelo/Sillas)</strong><span>4x MAX TIME</span></div>
             </div>`
     };
 
