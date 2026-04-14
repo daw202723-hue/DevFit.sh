@@ -103,10 +103,10 @@
             color: #00d2ff;
         }
 
-        /* --- HERO SECTION (IMPACTO VISUAL) --- */
+        /* --- HERO SECTION --- */
         .hero {
             background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), 
-                        url('https://images.unsplash.com/photo-1593642632823-8f785ba67e45?q=80&w=2000&auto=format&fit=crop');
+                        url("fondo.webp");
             background-size: cover;
             background-position: center;
             height: 80vh;
@@ -137,12 +137,10 @@
             font-family: 'JetBrains Mono', monospace;
             font-size: 1.2rem;
             color: var(--secondary);
-        
         }
 
-        /* --- SECCIONES --- */
+        /* --- CONTENEDORES --- */
         .container {
-           
             max-width: 1200px;
             margin: -100px auto 0;
             padding: 0 20px 100px;
@@ -159,7 +157,7 @@
             display: block;
         }
 
-        /* --- TARJETAS (FEATURE LIST) --- */
+        /* --- TARJETAS --- */
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -170,12 +168,13 @@
         .feature-card {
             background: white;
             padding: 40px;
-            border-radius: 2px; /* Estilo más agresivo de deporte */
+            border-radius: 2px;
             border-left: 5px solid var(--primary);
             box-shadow: var(--card-shadow);
             transition: transform 0.3s ease;
             position: relative;
             overflow: hidden;
+            cursor: pointer; /* Añadido para feedback visual */
         }
 
         .feature-card:hover {
@@ -189,25 +188,51 @@
             letter-spacing: -1px;
         }
 
-        .feature-card p {
-            color: var(--text-muted);
-            font-size: 1rem;
+        /* --- NUEVA LÓGICA DE DESPLEGABLE SIMULTÁNEO --- */
+        .info-trigger {
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--primary);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .feature-card::before {
-            content: "";
-            position: absolute;
-            top: -20px;
-            right: -20px;
-            font-size: 8rem;
-            font-weight: 900;
-            color: rgba(0,0,0,0.03);
-            z-index: 0;
+        .info-trigger::after {
+            content: "→";
+            transition: transform 0.3s;
         }
 
-        .card-1::before { content: "01"; }
-        .card-2::before { content: "02"; }
-        .card-3::before { content: "03"; }
+        /* La flecha gira cuando el grid tiene la clase 'active' */
+        .feature-grid.active .info-trigger::after {
+            transform: rotate(90deg);
+        }
+
+        .extended-container {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Cuando el grid está activo, se abren todos los extended-container */
+        .feature-grid.active .extended-container {
+            max-height: 2000px;
+            opacity: 1;
+            margin-top: 20px;
+        }
+
+        .extended-text {
+            font-size: 0.9rem;
+            color: #64748b;
+            line-height: 1.6;
+            border-left: 2px solid #e2e8f0;
+            padding-left: 15px;
+        }
 
         /* --- BOTONES --- */
         .btn-pro {
@@ -222,7 +247,7 @@
             transition: all 0.3s;
             border: none;
             cursor: pointer;
-            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%); /* Efecto dinámico */
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
         }
 
         .btn-pro:hover {
@@ -236,7 +261,8 @@
             background: var(--bg-dark);
             padding: 100px 20px;
             color: white;
-            margin-top: 80px;
+            margin-top: 30px;
+            margin-bottom: 30px;
         }
 
         footer {
@@ -248,7 +274,6 @@
             letter-spacing: 2px;
         }
 
-        /* --- ANIMACIONES --- */
         @keyframes blink { 50% { opacity: 0; } }
         .cursor { animation: blink 1s infinite; color: var(--primary); }
 
@@ -257,22 +282,22 @@
 <body>
 
     <nav>
-    <a href="index.html" class="devfit-logo-wrapper">
-        <div class="devfit-symbol">
-            <span class="code-icon">&lt;/&gt;</span>
-        </div>
-        <div class="devfit-brand">
-            <span class="text-dev">dev</span>Fit<span class="text-sh">.sh</span>
-        </div>
-    </a>
+        <a href="index.html" class="devfit-logo-wrapper">
+            <div class="devfit-symbol">
+                <span class="code-icon">&lt;/&gt;</span>
+            </div>
+            <div class="devfit-brand">
+                <span class="text-dev">dev</span>Fit<span class="text-sh">.sh</span>
+            </div>
+        </a>
 
-    <div class="nav-links">
-        <a href="index.html">Inicio</a>
-        <a href="rutinasVarias.html">Rutinas</a>
-        <a href="problemasVarios.html">Problemas</a>
-        <a href="ergonomia.html">Ergonomía</a>
-    </div>
-</nav>
+        <div class="nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="rutinasVarias.html">Rutinas</a>
+            <a href="problemasVarios.html">Problemas</a>
+            <a href="ergonomia.html">Ergonomía</a>
+        </div>
+    </nav>
 
     <header class="hero">
         <span class="section-title">Ingeniería Humana de Élite</span>
@@ -288,44 +313,330 @@
             <span class="section-title">01. El Concepto</span>
             <h2 style="font-size: 3rem; font-weight: 900; letter-spacing: -2px; margin: 10px 0;">TU CUERPO ES LA INFRAESTRUCTURA.</h2>
             <p style="font-size: 1.2rem; color: #475569; max-width: 800px;">
-                En el desarrollo de software, un hardware defectuoso arruina el mejor código. 
-                <strong>DevFit</strong> es el parche crítico para el sistema operativo más importante que posees. 
-                Eliminamos el lag físico y los cuellos de botella posturales para que tu rendimiento sea constante.
+                La integración de rutinas de entrenamiento en la vida diaria no es simplemente una cuestión de estética, sino una necesidad biológica fundamental para garantizar la longevidad y el rendimiento profesional.
             </p>
         </div>
 
-        <div class="feature-grid">
-            <div class="feature-card card-1">
+        <div class="feature-grid" id="main-feature-grid">
+            <div class="feature-card" onclick="toggleAllCards()">
                 <span class="section-title">Mantenimiento</span>
                 <h3>RUTINAS</h3>
                 <p>Scripts de movimiento de alta intensidad y baja fricción. Diseñados para integrarse en tus ciclos de compilación. Estabilidad funcional pura.</p>
+                <div class="info-trigger">VER_PROCESOS_EXTENDIDOS</div>
+                <div class="extended-container">
+                    <div class="extended-text">
+                        La integración de rutinas de entrenamiento no es una cuestión estética, sino una necesidad biológica para garantizar la longevidad y el rendimiento, especialmente en entornos de oficina. El sedentarismo deteriora la salud estructural y metabólica, por lo que el cuerpo requiere estímulos constantes para mantener su equilibrio operativo.<br><br>
+                        El entrenamiento de fuerza actúa como una armadura biológica que sostiene la arquitectura ósea y protege las articulaciones. Además de corregir la postura y prevenir dolores crónicos, el músculo funciona como un órgano metabólico que regula la glucosa y aporta la vitalidad necesaria para la jornada profesional.<br><br>
+                        Por su parte, la resistencia cardiovascular optimiza la distribución de oxígeno y nutrientes, impactando directamente en la claridad mental. Un sistema circulatorio fuerte reduce la fatiga cerebral durante tareas complejas y mejora la gestión del estrés, lo que favorece un estado de ánimo estable y un descanso más reparador.<br><br>
+                        Finalmente, la movilidad previene la rigidez articular y las lesiones derivadas de posiciones fijas prolongadas. Al trabajar el rango de movimiento, se elimina la sensación de pesadez y se garantiza la agilidad. En conjunto, estos pilares forman un sistema preventivo que asegura que nuestra infraestructura física soporte las exigencias laborales sin fallos prematuros.
+                    </div>
+                </div>
             </div>
             
-            <div class="feature-card card-2">
+            <div class="feature-card" onclick="toggleAllCards()">
                 <span class="section-title">Análisis</span>
                 <h3>DEBUGGING</h3>
                 <p>Identificación de errores críticos: Túnel carpiano, Burnout y Fatiga visual. Hotfixes validados para mantener el sistema online.</p>
+                <div class="info-trigger">VER_LOGS_EXTENDIDOS</div>
+                <div class="extended-container">
+                    <div class="extended-text">
+                        La prevención de problemas de salud es a menudo subestimada debido a la creencia errónea de que las molestias leves, como el dolor lumbar o la fatiga visual, son simples gajes del oficio. Existe una gran desinformación que nos lleva a normalizar estos síntomas, generando una falsa sensación de seguridad mientras el daño estructural se acumula de forma silenciosa.<br><br>
+                        Lo que parecen inconvenientes pasajeros suelen ser mucho más graves a largo plazo. Una ligera tensión en la muñeca o una mala postura constante pueden evolucionar hacia lesiones crónicas, como hernias discales o síndromes nerviosos permanentes. Al ignorar estas señales, permitimos que un problema mecánico se convierta en una crisis de salud que compromete tanto nuestra integridad física como nuestra capacidad cognitiva.<br><br>
+                        El mayor peligro reside en que, cuando el dolor se vuelve insoportable, la patología suele estar ya en una fase avanzada. La biología no perdona el maltrato sostenido por hábitos diarios incorrectos. Adoptar una cultura de prevención activa es la única estrategia real para evitar que pequeñas anomalías se transformen en fallos críticos que afecten irremediablemente nuestra calidad de vida.
+                    </div>
+                </div>
             </div>
 
-            <div class="feature-card card-3">
+            <div class="feature-card" onclick="toggleAllCards()">
                 <span class="section-title">Hardware</span>
                 <h3>ERGONOMÍA</h3>
                 <p>Arquitectura de estaciones de trabajo. Optimizamos los puntos de contacto entre el humano y la máquina para el máximo throughput.</p>
+                <div class="info-trigger">VER_HARDWARE_EXTENDIDO</div>
+                <div class="extended-container">
+                    <div class="extended-text">
+                        Optimizar la ergonomía y el espacio de trabajo es una inversión estratégica, no un lujo decorativo. Un entorno mal diseñado obliga al cuerpo a compensar posturas forzadas, lo que deriva en una fatiga acumulativa que drena la energía mucho antes de terminar la jornada. Disponer de herramientas adecuadas, como una silla con soporte lumbar real o un monitor a la altura de los ojos, es el primer paso para proteger nuestra infraestructura física.<br><br>
+                        Un buen espacio de trabajo debe permitir que las articulaciones se mantengan en posiciones neutras y naturales. Cuando la altura del escritorio o la disposición de los periféricos es incorrecta, sometemos a los tendones y músculos a un estrés innecesario que reduce drásticamente la precisión y la velocidad. La ergonomía busca eliminar estos puntos de fricción, permitiendo que la atención se centre plenamente en la ejecución profesional y no en el malestar físico.<br><br>
+                        Además de los elementos físicos, factores como la iluminación adecuada y la organización del entorno juegan un papel crucial en la salud mental y visual. Un espacio ordenado y bien configurado reduce la carga cognitiva y evita el cansancio ocular derivado de reflejos o brillos excesivos. En última instancia, una estación de trabajo ergonómica es el soporte que garantiza que el talento pueda expresarse de forma sostenida, eficiente y, sobre todo, libre de dolor.
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <section class="cta-section">
+        <div style="margin-top: 100px;">
+            <span class="section-title">02. Stack Tecnológico</span>
+            <h2 style="font-size: 3.5rem; font-weight: 900; letter-spacing: -2px; margin: 10px 0;">TÍTULO_DE_PROCESOS</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 50px;">
+                <div style="background: #1e293b; color: white; padding: 40px; border-radius: 4px;">
+                    <h4 style="color: var(--primary); font-family: 'JetBrains Mono';">Sincronización de Carga</h4>
+                    <p>Implementamos un modelo de entrenamiento basado en ráfagas de alta intensidad que se sincronizan con tus ciclos de trabajo. El objetivo es activar la respuesta anabólica sin saturar el sistema nervioso central, permitiendo una recuperación acelerada mientras mantienes el flujo de producción de código. Es la gestión eficiente de los hilos de ejecución biológicos.</p>
+                </div>
+                <div style="background: white; border: 1px solid #e2e8f0; padding: 40px; border-radius: 4px;">
+                    <h4 style="color: var(--bg-dark); font-family: 'JetBrains Mono'; font-weight: 900;">Gestión de Recursos</h4>
+                    <p>La entrada de datos (nutrición) determina la calidad del output (energía). Optimizamos la entrega de glucosa y aminoácidos para evitar picos de insulina que degraden la claridad mental. Al tratar la suplementación como dependencias críticas del sistema, garantizamos que el hardware humano opere a su frecuencia máxima sin riesgo de sobrecalentamiento o burnout.</p>
+                </div>
+            </div>
+        </div>
+
+       <div style="margin-top: 100px;">
+    <span class="section-title">03. System Logs</span>
+    <h2 style="font-size: 3.5rem; font-weight: 900; letter-spacing: -2px; margin: 10px 0;">DEBUG_YOUR_LIFE</h2>
+    
+    <div style="width: 100%; overflow-x: auto; margin-top: 30px;">
+        <table style="width: 100%; border-collapse: collapse; background: white; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem;">
+            <thead>
+                <tr style="background: var(--bg-dark); color: white; text-align: left;">
+                    <th style="padding: 20px;">ID_LOG</th>
+                    <th style="padding: 20px;">CATEGORÍA</th>
+                    <th style="padding: 20px;">ESTADO</th>
+                    <th style="padding: 20px;">ACCIÓN_RECOMENDADA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="border-bottom: 1px solid #e2e8f0;">
+                    <td style="padding: 20px;">#001</td>
+                    <td style="padding: 20px;">Dolor Lumbar</td>
+                    <td style="padding: 20px; color: #ef4444;">CRITICAL</td>
+                    <td style="padding: 20px;">Fortalecer glúteos y ajustar el apoyo de la silla en la zona baja de la espalda.</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #e2e8f0;">
+                    <td style="padding: 20px;">#002</td>
+                    <td style="padding: 20px;">Molestia en Muñecas</td>
+                    <td style="padding: 20px; color: #f59e0b;">WARNING</td>
+                    <td style="padding: 20px;">Usar reposamuñecas y realizar estiramientos de dedos y antebrazo cada hora.</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #e2e8f0;">
+                    <td style="padding: 20px;">#003</td>
+                    <td style="padding: 20px;">Fatiga Visual</td>
+                    <td style="padding: 20px; color: #f59e0b;">WARNING</td>
+                    <td style="padding: 20px;">Mirar a lo lejos durante 20 segundos y parpadear conscientemente con frecuencia.</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #e2e8f0;">
+                    <td style="padding: 20px;">#004</td>
+                    <td style="padding: 20px;">Tensión Cervical</td>
+                    <td style="padding: 20px; color: #ef4444;">CRITICAL</td>
+                    <td style="padding: 20px;">Subir la altura del monitor para que quede al nivel de los ojos y no bajar el cuello.</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #e2e8f0;">
+                    <td style="padding: 20px;">#005</td>
+                    <td style="padding: 20px;">Insomnio / Estrés</td>
+                    <td style="padding: 20px; color: #f59e0b;">WARNING</td>
+                    <td style="padding: 20px;">Evitar pantallas 1 hora antes de dormir y reducir el café por la tarde.</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #e2e8f0;">
+                    <td style="padding: 20px;">#006</td>
+                    <td style="padding: 20px;">Falta de Energía</td>
+                    <td style="padding: 20px; color: #34d399;">OPTIMIZED</td>
+                    <td style="padding: 20px;">Beber un vaso de agua cada vez que termines una tarea y levantarte a caminar.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+        <div style="margin-top: 100px;">
+            <span class="section-title">04. Optimization Stack</span>
+            <h2 style="font-size: 3.5rem; font-weight: 900; letter-spacing: -2px; margin: 10px 0;">BIOLOGICAL_DEPENDENCIES</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; margin-top: 40px;">
+                <div style="background: #1e293b; border-radius: 8px; overflow: hidden; box-shadow: var(--card-shadow); font-family: 'JetBrains Mono', monospace;">
+                    <div style="background: #334155; padding: 10px 20px; display: flex; gap: 8px;">
+                        <div style="width: 12px; height: 12px; border-radius: 50%; background: #ff5f56;"></div>
+                        <div style="width: 12px; height: 12px; border-radius: 50%; background: #ffbd2e;"></div>
+                        <div style="width: 12px; height: 12px; border-radius: 50%; background: #27c93f;"></div>
+                        <span style="color: #94a3b8; font-size: 0.7rem; margin-left: 10px;">package.json</span>
+                    </div>
+                    <pre style="margin: 0; padding: 25px; color: #f8fafc; font-size: 0.9rem; line-height: 1.5;">
+<span style="color: #818cf8;">{</span>
+  <span style="color: #34d399;">"name"</span>: <span style="color: #fbbf24;">"high-performance-dev"</span>,
+  <span style="color: #34d399;">"dependencies"</span>: <span style="color: #818cf8;">{</span>
+    <span style="color: #34d399;">"magnesium-bisglycinate"</span>: <span style="color: #fbbf24;">"^400mg"</span>,
+    <span style="color: #34d399;">"creatine-monohydrate"</span>: <span style="color: #fbbf24;">"^5g"</span>,
+    <span style="color: #34d399;">"vitamin-d3+k2"</span>: <span style="color: #fbbf24;">"^4000IU"</span>,
+    <span style="color: #34d399;">"omega-3-epa-dha"</span>: <span style="color: #fbbf24;">"^2000mg"</span>,
+    <span style="color: #34d399;">"caffeine"</span>: <span style="color: #f87171;">"deprecated-after-16h"</span>
+  <span style="color: #818cf8;">}</span>
+<span style="color: #818cf8;">}</span></pre>
+                </div>
+                <div>
+                    <p style="color: #475569; font-size: 1.1rem;">
+                        Tu hardware biológico requiere módulos específicos para mantener el <strong>uptime</strong> y evitar el <strong>memory leak</strong> cognitivo.
+                    </p>
+                    <ul style="list-style: none; padding: 0; color: #1e293b;">
+                        <li style="margin-bottom: 15px;"><strong style="color: var(--primary);">// Magnesium:</strong> Reduce el cortisol tras sesiones intensas.</li>
+                        <li style="margin-bottom: 15px;"><strong style="color: var(--primary);">// Creatine:</strong> ATP para tus procesos neuronales.</li>
+                        <li style="margin-bottom: 15px;"><strong style="color: var(--primary);">// Caffeine Logic:</strong> Fallo crítico si se detecta tras las 16h.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 100px; display: grid; grid-template-columns: 1fr 2fr; gap: 50px; align-items: start;">
+    <div>
+        <span class="section-title">05. FAQ</span>
+        <h2 style="font-size: 3rem; font-weight: 900; letter-spacing: -2px; line-height: 1;">PREGUNTAS_ FRECUENTES</h2>
+    </div>
+    <div style="background: white; padding: 20px; box-shadow: var(--card-shadow);">
+        <details style="padding: 20px; border-bottom: 1px solid #eee; cursor: pointer;">
+            <summary style="font-weight: 900; font-size: 1.1rem;">¿Cuánto tiempo debo entrenar y es bueno levantar pesas?</summary>
+            <p style="margin-top: 15px; color: #64748b;">Entrenar entre 3 y 4 veces por semana es ideal para la mayoría. Respecto a las pesas, son fundamentales: el entrenamiento de fuerza protege tus articulaciones, mejora tu metabolismo y es la mejor armadura contra el envejecimiento físico derivado del sedentarismo.</p>
+        </details>
+        
+        <details style="padding: 20px; border-bottom: 1px solid #eee; cursor: pointer;">
+            <summary style="font-weight: 900; font-size: 1.1rem;">¿Cuál es el tiempo mínimo de ejercicio para que realmente funcione?</summary>
+            <p style="margin-top: 15px; color: #64748b;">La ciencia demuestra que incluso sesiones de 15 a 20 minutos de alta intensidad pueden generar cambios metabólicos positivos. La clave no es la duración, sino la constancia y la intensidad del estímulo.</p>
+        </details>
+
+        <details style="padding: 20px; border-bottom: 1px solid #eee; cursor: pointer;">
+            <summary style="font-weight: 900; font-size: 1.1rem;">¿Cómo puedo corregir mi postura si paso 8 horas frente al ordenador?</summary>
+            <p style="margin-top: 15px; color: #64748b;">No existe una "postura perfecta" estática; la mejor postura es la siguiente. Muévete cada 30 minutos. Además, asegúrate de que tu monitor esté a la altura de los ojos y tus pies apoyados firmemente en el suelo para reducir la tensión lumbar.</p>
+        </details>
+
+        <details style="padding: 20px; border-bottom: 1px solid #eee; cursor: pointer;">
+            <summary style="font-weight: 900; font-size: 1.1rem;">¿Qué comer para evitar la pesadez y el sueño tras estar sentado todo el día?</summary>
+            <p style="margin-top: 15px; color: #64748b;">Prioriza proteínas y grasas saludables con vegetales. Evita los excesos de carbohidratos refinados (pastas, harinas blancas) en el almuerzo, ya que provocan picos de insulina que derivan en el clásico cansancio post-comida.</p>
+        </details>
+
+        <details style="padding: 20px; border-bottom: 1px solid #eee; cursor: pointer;">
+            <summary style="font-weight: 900; font-size: 1.1rem;">¿Qué es más importante: la dieta o el ejercicio?</summary>
+            <p style="margin-top: 15px; color: #64748b;">Es una simbiosis. La dieta gestiona tu composición corporal y energía, mientras que el ejercicio construye la estructura y capacidad funcional. No puedes "entrenar" para compensar una mala alimentación de forma sostenida sin afectar tu salud.</p>
+        </details>
+
+        <details style="padding: 20px; border-bottom: 1px solid #eee; cursor: pointer;">
+            <summary style="font-weight: 900; font-size: 1.1rem;">¿Cómo puedo ser constante si no me gusta el deporte tradicional?</summary>
+            <p style="margin-top: 15px; color: #64748b;">Encuentra una actividad que disfrutes, ya sea caminar rápido, calistenia, artes marciales o incluso juegos de realidad virtual activos. La sostenibilidad a largo plazo depende de que el movimiento sea una recompensa, no un castigo.</p>
+        </details>
+    </div>
+</div>
+
+   
+
+<div class="container" style="margin-top: 100px;">
+    <span class="section-title">05. Diagnostic Tool</span>
+    <h2 style="font-size: 3.5rem; font-weight: 900; letter-spacing: -2px; margin: 10px 0;">IMPOSTOR_SYNDROME_CHECK.sh</h2>
+    
+    <div id="impostor-test" style="background: #1e293b; color: #34d399; font-family: 'JetBrains Mono', monospace; padding: 40px; border-radius: 8px; box-shadow: var(--card-shadow); border-left: 5px solid var(--secondary);">
+        <div id="test-content">
+            <p style="color: #94a3b8;">// Analizando logs de autopercepción... Selecciona las anomalías detectadas:</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 20px;">
+                <label style="display: block; cursor: pointer;"><input type="checkbox" class="impostor-check" value="1"> [ ] ¿Atribuyes tus logros a la suerte o a factores externos?</label>
+                <label style="display: block; cursor: pointer;"><input type="checkbox" class="impostor-check" value="1"> [ ] ¿Miedo constante a que descubran que "no sabes tanto" como creen?</label>
+                <label style="display: block; cursor: pointer;"><input type="checkbox" class="impostor-check" value="1"> [ ] ¿Te cuesta aceptar elogios y sientes que "exageran" tus capacidades?</label>
+                <label style="display: block; cursor: pointer;"><input type="checkbox" class="impostor-check" value="1"> [ ] ¿Sientes que si algo no es perfecto, entonces no vale nada?</label>
+                <label style="display: block; cursor: pointer;"><input type="checkbox" class="impostor-check" value="1"> [ ] ¿Un pequeño error hace que sientas que tus éxitos anteriores son mentira?</label>
+                <label style="display: block; cursor: pointer;"><input type="checkbox" class="impostor-check" value="1"> [ ] ¿Te comparas con "genios" de tu área sintiéndote inferior?</label>
+                <label style="display: block; cursor: pointer;"><input type="checkbox" class="impostor-check" value="1"> [ ] ¿Sientes que debes trabajar el doble para parecer igual de competente?</label>
+                <label style="display: block; cursor: pointer;"><input type="checkbox" class="impostor-check" value="1"> [ ] ¿Te aterra el éxito por la presión de fallar la próxima vez?</label>
+                <label style="display: block; cursor: pointer;"><input type="checkbox" class="impostor-check" value="1"> [ ] ¿Sobre-optimizas código simple por miedo al juicio externo?</label>
+            </div>
+            
+            <button onclick="runDiagnostic()" style="background: var(--secondary); color: #0f172a; border: none; padding: 12px 25px; font-family: 'JetBrains Mono'; font-weight: 900; margin-top: 30px; cursor: pointer; border-radius: 2px; transition: 0.3s;">RUN_DIAGNOSTIC()</button>
+        </div>
+
+        <div id="test-result" style="display: none; margin-top: 30px; border-top: 1px solid #334155; padding-top: 20px;">
+            <p id="result-text" style="font-size: 1.2rem; font-weight: 900;"></p>
+            <p id="result-advice" style="color: #94a3b8; font-size: 0.9rem; line-height: 1.4; margin-top: 10px;"></p>
+            <button onclick="resetTest()" style="background: transparent; color: #94a3b8; border: 1px solid #94a3b8; padding: 5px 15px; font-size: 0.7rem; margin-top: 20px; cursor: pointer;">RESTART_SYSTEM</button>
+        </div>
+    </div>
+</div>
+
+
+ <section class="cta-section">
         <span class="section-title" style="color: var(--secondary)">Metrics & Bio-Feedback</span>
         <h2 style="font-size: 3rem; font-weight: 900; margin-bottom: 40px;">¿CONOCES TU TASA DE EJECUCIÓN?</h2>
         <a href="TMB.html" class="btn-pro">Calcular TMB</a>
     </section>
-
     <footer>
         <div style="font-weight: 900; font-size: 1.5rem; margin-bottom: 10px;">DEV<span style="color:var(--primary)">FIT</span></div>
         <p>&copy; 2026 - ENGINEERED FOR HIGH PERFORMANCE HUMANS</p>
-        <p style="color: #444; margin-top: 20px;">V.3.1.0 // STABLE_BUILD</p>
+        <div style="margin-top: 20px; opacity: 0.6;">
+            <a href="aviso-legal.html" style="color: white; margin: 0 10px; text-decoration: none;">Aviso Legal</a> | 
+            <a href="privacidad.html" style="color: white; margin: 0 10px; text-decoration: none;">Privacidad</a> | 
+            <a href="cookies.html" style="color: white; margin: 0 10px; text-decoration: none;">Cookies</a>
+        </div>
     </footer>
 
+    <script>
+        // FUNCIÓN PARA ABRIR LAS 3 TARJETAS A LA VEZ
+        function toggleAllCards() {
+            const grid = document.getElementById('main-feature-grid');
+            grid.classList.toggle('active');
+        }
+
+        function runDiagnostic() {
+            const checks = document.querySelectorAll('.impostor-check:checked').length;
+            const content = document.getElementById('test-content');
+            const result = document.getElementById('test-result');
+            const text = document.getElementById('result-text');
+            const advice = document.getElementById('result-advice');
+
+            content.style.opacity = "0.5";
+            content.style.pointerEvents = "none";
+            
+            setTimeout(() => {
+                content.style.display = "none";
+                result.style.display = "block";
+
+                if (checks === 0) {
+                    text.innerHTML = "<span style='color: #34d399;'>[SUCCESS]</span> SYSTEM_READY";
+                    advice.innerText = "No se detectan fugas de seguridad.";
+                } else if (checks <= 2) {
+                    text.innerHTML = "<span style='color: #f59e0b;'>[WARNING]</span> LOW_CONFIDENCE";
+                    advice.innerText = "Inseguridad detectada. Recuerda tu valor.";
+                } else {
+                    text.innerHTML = "<span style='color: #ef4444;'>[CRITICAL]</span> SYNDROME_OVERFLOW";
+                    advice.innerText = "Error 403: Estás ignorando tu propio potencial.";
+                }
+            }, 800);
+        }
+
+        function resetTest() { location.reload(); }
+    </script>
+    <script>
+    function runDiagnostic() {
+        const checks = document.querySelectorAll('.impostor-check:checked').length;
+        const content = document.getElementById('test-content');
+        const result = document.getElementById('test-result');
+        const text = document.getElementById('result-text');
+        const advice = document.getElementById('result-advice');
+
+        // Efecto visual de carga
+        content.style.opacity = "0.5";
+        content.style.pointerEvents = "none";
+        
+        setTimeout(() => {
+            content.style.display = "none";
+            result.style.display = "block";
+
+            if (checks === 0) {
+                text.innerHTML = "<span style='color: #34d399;'>TODO EN ORDEN</span>";
+                advice.innerText = "Parece que tienes una relación sana con tus logros. Confías en tu capacidad y sabes que estás donde estás por tu propio esfuerzo. ¡Sigue así!";
+            } else if (checks <= 3) {
+                text.innerHTML = "<span style='color: #f59e0b;'>DUDAS PUNTUALES</span>";
+                advice.innerText = "A veces te comparas o dudas un poco, pero es algo normal. Recuerda que nadie nace sabiendo y que incluso los perfiles que más admiras tienen sus momentos de inseguridad.";
+            } else if (checks <= 6) {
+                text.innerHTML = "<span style='color: #ef4444;'>SÍNDROME DEL IMPOSTOR DETECTADO</span>";
+                advice.innerText = "Estás siendo demasiado duro contigo mismo. Te cuesta ver que tus éxitos son fruto de tu trabajo y no de la suerte. Intenta valorar más tus pasos, incluso los pequeños.";
+            } else {
+                text.innerHTML = "<span style='color: #ef4444;'>ALERTA DE BLOQUEO</span>";
+                advice.innerText = "Te sientes como un fraude casi todo el tiempo, y eso es agotador. Es importante que empieces a aceptar que eres capaz y que el perfeccionismo te está impidiendo disfrutar de lo que has conseguido. No tienes que demostrarle nada a nadie.";
+            }
+        }, 1000);
+    }
+
+    function resetTest() {
+        const content = document.getElementById('test-content');
+        const result = document.getElementById('test-result');
+        const checkboxes = document.querySelectorAll('.impostor-check');
+        
+        checkboxes.forEach(cb => cb.checked = false);
+        result.style.display = "none";
+        content.style.display = "block";
+        content.style.opacity = "1";
+        content.style.pointerEvents = "auto";
+    }
+</script>
 </body>
 </html>

@@ -3,285 +3,316 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevFit | Movilidad Nivel Bajo</title>
+    <title>DevFit | Movilidad Nivel Medio (Active Flow)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --bg-color: rgb(202, 202, 202);
-            --card-bg: #ffffff;
-            --nav-bg: #0f172a;
-            --text-main: #1e293b;
-            --border-color: #000000;
-            --orange: #34d399; /* Púrpura claro para Movilidad Bajo */
+            --primary: #00d2ff; /* Cian para Movilidad Medio */
+            --bg-dark: #0f172a;
+            --bg-light: #f8fafc;
+            --orange: #ff7a00;
+            --card-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background-color: var(--bg-light);
             margin: 0;
+            color: #1e293b;
             line-height: 1.6;
         }
 
         /* --- NAVEGACIÓN --- */
-                  nav {
-    display: flex;
-    justify-content: space-between; /* Logo a la izquierda, links a la derecha */
-    align-items: center;
-    padding: 0.8rem 2rem; /* Reducimos el padding vertical */
-    background: var(--nav-bg);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-/* Contenedor de enlaces */
-.nav-links {
-    display: flex;
-    gap: 25px;
-}
-
-nav a {
-    color: #ff9900;
-    text-decoration: none;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.85rem; /* Un poco más pequeño para legibilidad */
-    letter-spacing: 1px;
-}
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: 70px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
 
         .devfit-logo-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 8px; /* Menos espacio entre icono y texto */
-    text-decoration: none !important; /* Quita subrayados de enlace */
-    padding: 0;
-}
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none !important;
+        }
 
-.devfit-symbol {
-    width: 32px; /* Reducido de 45px */
-    height: 32px; /* Reducido de 45px */
-    border: 2px solid #000000;
-    background-color: #ffffff;
-    border-radius: 40% 10% 40% 40%; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 2px 2px 0px #ff7a00; /* Sombra más pequeña */
-    transition: all 0.2s ease;
-}
+        .devfit-symbol {
+            width: 32px;
+            height: 32px;
+            border: 2px solid #000000;
+            background-color: #ffffff;
+            border-radius: 40% 10% 40% 40%; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 2px 2px 0px var(--orange);
+        }
 
-.code-icon {
-    color: #00d2ff;
-    font-family: 'Courier New', monospace;
-    font-weight: 900;
-    font-size: 0.75rem; /* Icono más pequeño */
-}
+        .code-icon {
+            color: var(--primary);
+            font-family: 'Courier New', monospace;
+            font-weight: 900;
+            font-size: 0.75rem;
+        }
 
-.devfit-brand {
-    font-size: 1.3rem; /* Reducido de 1.8rem */
-    font-weight: 900;
-    color: #ffffff;
-    letter-spacing: -0.5px;
-    display: flex;
-    align-items: baseline;
-    text-transform: none; /* Evita que el logo se ponga en mayúsculas por el estilo general de nav a */
-}
+        .devfit-brand {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
 
-.text-dev { color: #ff7a00; }
-.text-sh {
-    color: #00d2ff;
-    font-size: 0.7rem;
-    font-family: 'Courier New', monospace;
-    margin-left: 1px;
-}
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
 
-/* Hover interactivo para todo el logo */
-.devfit-logo-wrapper:hover .devfit-symbol {
-    transform: translate(-1px, -1px);
-    box-shadow: 4px 4px 0px #ff7a00;
-}
+        /* --- ADSENSE PLACEHOLDERS --- */
+        .ads-box {
+            background: #ebf2f7;
+            border: 1px dashed #cbd5e1;
+            margin: 20px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #94a3b8;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+        }
+        .ads-top { width: 100%; max-width: 728px; height: 90px; }
 
-        .container { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
-        
-        header { text-align: center; margin-bottom: 50px; }
+        /* --- HEADER --- */
+        header {
+            background: var(--bg-dark);
+            padding: 80px 20px 120px;
+            text-align: center;
+            color: white;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        }
+
         header h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 900;
             margin: 0;
-            background: linear-gradient(135deg, #000000, #444444);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            -webkit-text-fill-color: transparent;
+        }
+
+        header span { color: var(--primary); }
+
+        /* --- CONTAINER --- */
+        .container {
+            max-width: 900px;
+            margin: -60px auto 0;
+            padding: 0 20px 100px;
         }
 
         .selector-card {
-            background: var(--card-bg);
-            border: 2px solid var(--border-color);
+            background: white;
             padding: 40px;
-            border-radius: 30px;
-            box-shadow: 10px 10px 0px var(--border-color);
-            margin-bottom: 40px;
+            border-radius: 4px;
+            box-shadow: var(--card-shadow);
             text-align: center;
+            margin-bottom: 40px;
         }
 
         .days-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
         .day-btn {
-            background: white;
-            border: 2px solid var(--border-color);
+            background: var(--bg-light);
+            border: 2px solid #e2e8f0;
             padding: 15px;
-            border-radius: 15px;
-            font-weight: 800;
+            font-weight: 900;
             cursor: pointer;
-            transition: 0.2s;
-            box-shadow: 4px 4px 0px var(--border-color);
+            transition: all 0.3s;
+            font-family: 'JetBrains Mono', monospace;
+            border-radius: 4px;
         }
 
-        .day-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px var(--border-color); }
-        .day-btn.active { background: var(--orange); color: #0f172a; transform: translate(2px, 2px); box-shadow: 0px 0px 0px; }
+        .day-btn:hover { border-color: var(--primary); color: var(--primary); }
+        .day-btn.active { background: var(--primary); color: var(--bg-dark); border-color: var(--primary); }
 
-        .routine-section {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
+        /* --- ROUTINE CARDS --- */
         .split-card {
             background: white;
-            border: 2px solid var(--border-color);
+            border-radius: 4px;
             padding: 30px;
-            border-radius: 20px;
             margin-bottom: 25px;
-            box-shadow: 8px 8px 0px var(--border-color);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            border-left: 6px solid var(--primary);
+            animation: fadeIn 0.5s ease;
         }
 
         .split-title {
             display: inline-block;
-            background: var(--nav-bg);
-            color: var(--orange);
+            background: var(--bg-dark);
+            color: var(--primary);
             padding: 5px 15px;
-            border-radius: 8px;
-            font-weight: 800;
-            margin-bottom: 15px;
-            text-transform: uppercase;
+            font-weight: 900;
+            margin-bottom: 20px;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            font-family: 'JetBrains Mono', monospace;
         }
 
         .exercise-item {
-            margin-bottom: 15px;
-            padding-left: 20px;
-            border-left: 4px solid var(--orange);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f1f5f9;
         }
 
-        .exercise-item strong { display: block; font-size: 1.1rem; }
-        .exercise-item span { color: #64748b; font-size: 0.9rem; font-family: monospace; }
+        .exercise-item:last-child { border: none; }
+        .exercise-item strong { display: block; font-size: 1.1rem; color: var(--bg-dark); }
+        .exercise-item span {
+            color: #64748b;
+            font-size: 0.9rem;
+            font-family: 'JetBrains Mono', monospace;
+            display: block;
+            margin-top: 4px;
+        }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        footer { text-align: center; padding: 60px; background: var(--nav-bg); color: var(--orange); margin-top: 60px; }
+        footer { background: #000; color: white; padding: 60px; text-align: center; }
     </style>
 </head>
 <body>
 
-    <nav>
+<nav>
     <a href="index.html" class="devfit-logo-wrapper">
-        <div class="devfit-symbol">
-            <span class="code-icon">&lt;/&gt;</span>
-        </div>
-        <div class="devfit-brand">
-            <span class="text-dev">dev</span>Fit<span class="text-sh">.sh</span>
-        </div>
+        <div class="devfit-symbol"><span class="code-icon">&lt;/&gt;</span></div>
+        <div class="devfit-brand"><span style="color:#cbd5e1">dev</span>Fit<span style="color:#cbd5e1; font-size: 0.7rem; font-family: monospace;">.sh</span></div>
     </a>
-
     <div class="nav-links">
         <a href="index.html">Inicio</a>
-        <a href="rutinasVarias.html">Volver al Selector</a>
+        <a href="rutinasVarias.html">Volver</a>
     </div>
 </nav>
 
-    <div class="container">
-        <header>
-            <h1>Movilidad_Bajo.exe</h1>
-            <p>// System Recovery: Basic Joint Decompression</p>
-        </header>
+<header>
+    <h1>MOVILIDAD_<span>MEDIO</span>.EXE</h1>
+    <p>// FLEXIBILITY_PROTOCOL: ACTIVE RANGE OF MOTION</p>
+</header>
 
-        <div class="selector-card">
-            <h3>¿Cuántos días quieres dedicar a estirar?</h3>
-            <div class="days-grid">
-                <button class="day-btn" onclick="showRoutine(2, this)">2 DÍAS</button>
-                <button class="day-btn" onclick="showRoutine(3, this)">3 DÍAS</button>
-                <button class="day-btn" onclick="showRoutine(4, this)">4 DÍAS</button>
-            </div>
+<div class="container">
+    <div class="ads-box ads-top">Publicidad AdSense</div>
+
+    <div class="selector-card">
+        <h3 style="font-weight: 900; margin-top: 0;">SESSION_SELECTOR</h3>
+        <p style="color: #64748b; font-size: 0.9rem;">Selecciona tu frecuencia de liberación articular:</p>
+        <div class="days-grid">
+            <button class="day-btn" onclick="showRoutine(2, this)">2_SESSIONS</button>
+            <button class="day-btn" onclick="showRoutine(3, this)">3_SESSIONS</button>
+            <button class="day-btn" onclick="showRoutine(4, this)">4_SESSIONS</button>
         </div>
-
-        <div id="routine-display"></div>
     </div>
 
-     <footer>
-        <span style="color:white; font-weight:900;">DevFit.sh</span><br>
-        Ergonomics & Health Protocol v1.0
-    </footer>
+    <div id="routine-display">
+        </div>
 
-    <script>
-        const routines = {
-            2: `
-                <div class="routine-section" style="display:block">
-                    <div class="split-card">
-                        <span class="split-title">Día 1: Cuello y Espalda Alta</span>
-                        <div class="exercise-item"><strong>Inclinaciones cervicales</strong><span>2 series x 1 min // Suave, de lado a lado.</span></div>
-                        <div class="exercise-item"><strong>Estiramiento de gato (Cat-Cow)</strong><span>3 series x 10 reps // Despierta la columna.</span></div>
-                    </div>
-                    <div class="split-card">
-                        <span class="split-title">Día 2: Tren Inferior Básico</span>
-                        <div class="exercise-item"><strong>Estiramiento de Isquios sentado</strong><span>3 series x 45 seg // Toca tus puntas sin forzar.</span></div>
-                        <div class="exercise-item"><strong>Posición de la Mariposa</strong><span>3 series x 1 min // Abre la cadera suavemente.</span></div>
-                    </div>
-                </div>`,
-            3: `
-                <div class="routine-section" style="display:block">
-                    <div class="split-card"><span class="split-title">Día 1: Anti-Escritorio</span>
-                        <div class="exercise-item"><strong>Estiramiento de Antebrazos</strong><span>3x30 seg // Para prevenir túnel carpiano.</span></div>
-                        <div class="exercise-item"><strong>Apertura de Pecho en pared</strong><span>3x45 seg</span></div>
-                    </div>
-                    <div class="split-card"><span class="split-title">Día 2: Movilidad de Cadera</span>
-                        <div class="exercise-item"><strong>Zancada de caballero (Lunge stretch)</strong><span>3x40 seg por lado</span></div>
-                    </div>
-                    <div class="split-card"><span class="split-title">Día 3: Espalda Baja</span>
-                        <div class="exercise-item"><strong>Rodillas al pecho (Tumbado)</strong><span>3x1 min</span></div>
-                        <div class="exercise-item"><strong>Postura del niño</strong><span>2 min // Relajación total lumbar.</span></div>
-                    </div>
-                </div>`,
-            4: `
-                <div class="routine-section" style="display:block">
-                    <div class="split-card"><span class="split-title">Día 1: Cuello & Hombros</span>
-                        <div class="exercise-item"><strong>Círculos de hombros</strong><span>3x1 min</span></div>
-                    </div>
-                    <div class="split-card"><span class="split-title">Día 2: Piernas</span>
-                        <div class="exercise-item"><strong>Estiramiento de Cuádriceps de pie</strong><span>3x30 seg por lado</span></div>
-                    </div>
-                    <div class="split-card"><span class="split-title">Día 3: Muñecas & Dedos</span>
-                        <div class="exercise-item"><strong>Extensiones de dedos</strong><span>3x15 reps // Estira después de programar.</span></div>
-                    </div>
-                    <div class="split-card"><span class="split-title">Día 4: Torso</span>
-                        <div class="exercise-item"><strong>Rotación de tronco sentado</strong><span>3x15 reps por lado</span></div>
-                    </div>
-                </div>`
-        };
+    <div class="ads-box ads-top">Publicidad AdSense</div>
+</div>
 
-        function showRoutine(days, btn) {
-            document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            document.getElementById('routine-display').innerHTML = routines[days];
-            window.scrollTo({
-                top: document.getElementById('routine-display').offsetTop - 100,
-                behavior: 'smooth'
-            });
-        }
-    </script>
+<footer>
+    <div style="font-weight: 900; font-size: 1.5rem;">DEV<span style="color:var(--primary)">FIT</span>.SH</div>
+    <p>&copy; 2026 - ERGONOMICS & HEALTH PROTOCOL V1.0</p>
+</footer>
+
+<script>
+    const routines = {
+        2: `
+            <div class="split-card">
+                <span class="split-title">DÍA 01: DESBLOQUEO DE COLUMNA Y CADERA</span>
+                <div class="exercise-item">
+                    <strong>Gato-Camello Dinámico</strong>
+                    <span>3 series x 15 reps // Moviliza cada vértebra tras horas de compilación.</span>
+                </div>
+                <div class="exercise-item">
+                    <strong>El Gran Estiramiento del Mundo</strong>
+                    <span>3 series x 8 por lado // Zancada con rotación torácica profunda.</span>
+                </div>
+                <div class="exercise-item">
+                    <strong>Sentadilla Profunda Isométrica</strong>
+                    <span>3 series x 45 seg // Espalda recta, codos abriendo rodillas.</span>
+                </div>
+            </div>
+            <div class="split-card">
+                <span class="split-title">DÍA 02: TREN SUPERIOR Y APERTURA</span>
+                <div class="exercise-item">
+                    <strong>Deslocaciones con Banda o Palo</strong>
+                    <span>3 series x 12 reps // Apertura de hombros y pecho.</span>
+                </div>
+                <div class="exercise-item">
+                    <strong>Jefferson Curl (Peso Ligero)</strong>
+                    <span>3 series x 10 reps // Flexión segmentada para salud vertebral.</span>
+                </div>
+            </div>`,
+        3: `
+            <div class="split-card">
+                <span class="split-title">DÍA 01: CADERA & GLÚTEO</span>
+                <div class="exercise-item"><strong>90/90 de Cadera Dinámico</strong><span>3x12 cambios controlados</span></div>
+                <div class="exercise-item"><strong>Estiramiento del Piramidal</strong><span>3x45 seg por lado</span></div>
+            </div>
+            <div class="split-card">
+                <span class="split-title">DÍA 02: COLUMNA & CUELLO (ANTI-TECH-NECK)</span>
+                <div class="exercise-item"><strong>Extensiones en Silla</strong><span>3x15 reps // Arqueo torácico sobre respaldo.</span></div>
+                <div class="exercise-item"><strong>Retracciones Cervicales</strong><span>3x15 reps // Corrige la postura de "cuello de texto".</span></div>
+            </div>
+            <div class="split-card">
+                <span class="split-title">DÍA 03: TOBILLOS & ISQUIOS</span>
+                <div class="exercise-item"><strong>Movilidad de Tobillo contra Pared</strong><span>3x15 reps por lado</span></div>
+                <div class="exercise-item"><strong>Perro Boca Abajo Dinámico</strong><span>3x1 min // "Pedalea" para soltar isquios.</span></div>
+            </div>`,
+        4: `
+            <div class="split-card">
+                <span class="split-title">DÍA 01: FULL BODY FLOW</span>
+                <div class="exercise-item"><strong>Saludo al Sol (Variante Funcional)</strong><span>5 series completas</span></div>
+            </div>
+            <div class="split-card">
+                <span class="split-title">DÍA 02: APERTURA LATERAL</span>
+                <div class="exercise-item"><strong>Cossack Squats (Lentas)</strong><span>3x10 por pierna</span></div>
+                <div class="exercise-item"><strong>Couch Stretch (Psoas)</strong><span>3x45 seg por lado</span></div>
+            </div>
+            <div class="split-card">
+                <span class="split-title">DÍA 03: HOMBROS & MUÑECAS</span>
+                <div class="exercise-item"><strong>CARS de Hombro</strong><span>3x5 círculos por lado</span></div>
+                <div class="exercise-item"><strong>Estiramiento de Flexores de Muñeca</strong><span>3x30 seg // Vital para el uso de teclado.</span></div>
+            </div>
+            <div class="split-card">
+                <span class="split-title">DÍA 04: RECUPERACIÓN TOTAL</span>
+                <div class="exercise-item"><strong>Posición del Niño (Child's Pose)</strong><span>2 min de respiración profunda</span></div>
+                <div class="exercise-item"><strong>Torsiones de Espalda en Suelo</strong><span>3x1 min por lado</span></div>
+            </div>`
+    };
+
+    function showRoutine(days, btn) {
+        document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('routine-display').innerHTML = routines[days];
+        
+        window.scrollTo({
+            top: document.getElementById('routine-display').offsetTop - 100,
+            behavior: 'smooth'
+        });
+    }
+</script>
+
 </body>
 </html>

@@ -3,196 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevFit | Calculadora TMB</title>
+    <title>DevFit | Energy_Diagnostic_Tool</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --bg-color: rgb(202, 202, 202);
-            --card-bg: #ffffff;
-            --nav-bg: #0f172a;
-            --text-main: #1e293b;
-            --border-color: #000000;
-            --orange: #ff9900;
-            --cyan: #00d2ff; /* Color para la calculadora */
+            --primary: #ff7a00;
+            --secondary: #00d2ff;
+            --success: #34d399;
+            --bg-dark: #0f172a;
+            --bg-light: #f8fafc;
+            --card-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background-color: var(--bg-light);
             margin: 0;
+            color: #1e293b;
             line-height: 1.6;
         }
 
-    nav {
-    display: flex;
-    justify-content: space-between; /* Logo a la izquierda, links a la derecha */
-    align-items: center;
-    padding: 0.8rem 2rem; /* Reducimos el padding vertical */
-    background: var(--nav-bg);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-/* Contenedor de enlaces */
-.nav-links {
-    display: flex;
-    gap: 25px;
-}
-
-nav a {
-    color: #ff9900;
-    text-decoration: none;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.85rem; /* Un poco más pequeño para legibilidad */
-    letter-spacing: 1px;
-}
-
-/* --- LOGO COMPACTO E INTERACTIVO --- */
-.devfit-logo-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 8px; /* Menos espacio entre icono y texto */
-    text-decoration: none !important; /* Quita subrayados de enlace */
-    padding: 0;
-}
-
-.devfit-symbol {
-    width: 32px; /* Reducido de 45px */
-    height: 32px; /* Reducido de 45px */
-    border: 2px solid #000000;
-    background-color: #ffffff;
-    border-radius: 40% 10% 40% 40%; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 2px 2px 0px #ff7a00; /* Sombra más pequeña */
-    transition: all 0.2s ease;
-}
-
-.code-icon {
-    color: #00d2ff;
-    font-family: 'Courier New', monospace;
-    font-weight: 900;
-    font-size: 0.75rem; /* Icono más pequeño */
-}
-
-.devfit-brand {
-    font-size: 1.3rem; /* Reducido de 1.8rem */
-    font-weight: 900;
-    color: #ffffff;
-    letter-spacing: -0.5px;
-    display: flex;
-    align-items: baseline;
-    text-transform: none; /* Evita que el logo se ponga en mayúsculas por el estilo general de nav a */
-}
-
-.text-dev { color: #ff7a00; }
-.text-sh {
-    color: #00d2ff;
-    font-size: 0.7rem;
-    font-family: 'Courier New', monospace;
-    margin-left: 1px;
-}
-
-/* Hover interactivo para todo el logo */
-.devfit-logo-wrapper:hover .devfit-symbol {
-    transform: translate(-1px, -1px);
-    box-shadow: 4px 4px 0px #ff7a00;
-}
-        .container { max-width: 800px; margin: 0 auto; padding: 60px 20px; }
-        
-        header { text-align: center; margin-bottom: 50px; }
-        header h1 {
-    font-size: 3.5rem;
-    margin: 0;
-    font-weight: 900;
-    /* 1. Definimos el degradado */
-    background: linear-gradient(135deg, #000 0%, #444 100%);
-    
-    /* 2. Aplicamos el recorte al texto (Estándar) */
-    background-clip: text;
-    
-    /* 3. Aplicamos el recorte para navegadores basados en Webkit (Chrome, Safari, Edge) */
-    -webkit-background-clip: text;
-    
-    /* 4. Hacemos que el color original del texto sea transparente para que se vea el fondo */
-    color: transparent; 
-    -webkit-text-fill-color: transparent; /* Refuerzo para algunos navegadores antiguos */
-    
-    letter-spacing: -2px;
-}
-
-        .calc-card {
-            background: var(--card-bg);
-            border: 3px solid var(--border-color);
-            padding: 40px;
-            border-radius: 30px;
-            box-shadow: 12px 12px 0px var(--border-color);
+        /* --- NAVEGACIÓN UNIFICADA --- */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 5%; background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000;
+            height: 70px; border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
-        .form-group { margin-bottom: 20px; }
-        
-        label { display: block; font-weight: 800; text-transform: uppercase; margin-bottom: 8px; font-size: 0.9rem; }
+        .devfit-logo-wrapper { display: flex; align-items: center; gap: 8px; text-decoration: none !important; }
+        .devfit-symbol {
+            width: 32px; height: 32px; border: 2px solid #000; background: #fff;
+            border-radius: 40% 10% 40% 40%; display: flex; justify-content: center; align-items: center;
+            box-shadow: 2px 2px 0px #cbd5e1;
+        }
+        .code-icon { color: var(--secondary); font-family: 'Courier New', monospace; font-weight: 900; font-size: 0.75rem; }
+        .devfit-brand { font-size: 1.3rem; font-weight: 900; color: #fff; letter-spacing: -0.5px; }
+        .text-dev { color: #cbd5e1; }
+        .text-sh { color: #cbd5e1; font-size: 0.7rem; font-family: 'Courier New', monospace; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: #cbd5e1; text-decoration: none; font-weight: 600; font-size: 0.8rem; text-transform: uppercase; }
+
+        /* --- HEADER TIPO TERMINAL --- */
+        header {
+            background: var(--bg-dark);
+            padding: 100px 20px 140px;
+            text-align: center;
+            color: white;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+
+        .terminal-loader {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--success);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        header h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; letter-spacing: -2px; margin: 0; }
+        header span { color: var(--secondary); text-shadow: 0 0 15px rgba(0, 210, 255, 0.3); }
+
+        /* --- CALCULADORA --- */
+        .container { max-width: 900px; margin: -80px auto 0; padding: 0 20px 100px; }
+
+        .calc-window {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+
+        .window-header {
+            background: #1e293b;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dot { width: 10px; height: 10px; border-radius: 50%; }
+        .window-title { color: #94a3b8; font-family: 'JetBrains Mono'; font-size: 0.7rem; text-transform: uppercase; }
+
+        .calc-body { padding: 40px; }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        label { 
+            display: block; font-family: 'JetBrains Mono'; font-weight: 700; 
+            font-size: 0.7rem; color: #64748b; text-transform: uppercase; margin-bottom: 10px;
+        }
 
         input, select {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid var(--border-color);
-            border-radius: 10px;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 1.1rem;
-            box-sizing: border-box;
+            width: 100%; padding: 12px; background: #f1f5f9; border: 2px solid transparent;
+            border-radius: 4px; font-family: 'JetBrains Mono'; font-size: 1rem; color: var(--bg-dark);
+            transition: all 0.3s; box-sizing: border-box;
         }
 
-        .btn-calc {
-            width: 100%;
-            background: var(--cyan);
-            color: var(--nav-bg);
-            border: 2px solid var(--border-color);
-            padding: 15px;
-            font-weight: 900;
-            text-transform: uppercase;
-            cursor: pointer;
-            border-radius: 12px;
-            box-shadow: 4px 4px 0px var(--border-color);
-            transition: 0.2s;
-            margin-top: 10px;
+        input:focus { outline: none; border-color: var(--secondary); background: #fff; }
+
+        .btn-execute {
+            width: 100%; background: var(--bg-dark); color: #fff; border: none;
+            padding: 20px; font-family: 'JetBrains Mono'; font-weight: 900;
+            text-transform: uppercase; cursor: pointer; letter-spacing: 2px;
+            transition: all 0.3s; display: flex; justify-content: center; align-items: center; gap: 10px;
         }
 
-        .btn-calc:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px var(--border-color); }
+        .btn-execute:hover { background: #1e293b; color: var(--secondary); }
 
-        #result-display {
-            margin-top: 30px;
-            padding: 25px;
-            border: 2px dashed var(--border-color);
-            border-radius: 15px;
+        /* --- RESULTADOS ESTILO REPORTE --- */
+        #diagnostic-report {
             display: none;
-            animation: fadeIn 0.5s ease;
-            background: #f8fafc;
+            margin-top: 40px;
+            border-top: 2px dashed #e2e8f0;
+            padding-top: 40px;
         }
 
-        .result-value { font-size: 2.5rem; font-weight: 900; color: var(--cyan); display: block; }
+        .report-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .metric-box {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 4px;
+            border-left: 4px solid #cbd5e1;
+        }
 
-        footer { text-align: center; padding: 60px; background: var(--nav-bg); color: orange; margin-top: 60px; }
+        .metric-box.highlight { border-left-color: var(--primary); background: #fff7ed; }
+        .metric-box.brain { border-left-color: var(--secondary); background: #f0f9ff; }
+
+        .metric-label { font-family: 'JetBrains Mono'; font-size: 0.65rem; color: #94a3b8; display: block; margin-bottom: 5px; }
+        .metric-value { font-size: 1.8rem; font-weight: 900; font-family: 'JetBrains Mono'; color: var(--bg-dark); }
+        .metric-desc { font-size: 0.8rem; color: #64748b; margin-top: 10px; display: block; }
+
+        footer { background: #000; color: white; padding: 60px; text-align: center; }
     </style>
 </head>
 <body>
 
-     <nav>
+<nav>
     <a href="index.html" class="devfit-logo-wrapper">
-        <div class="devfit-symbol">
-            <span class="code-icon">&lt;/&gt;</span>
-        </div>
-        <div class="devfit-brand">
-            <span class="text-dev">dev</span>Fit<span class="text-sh">.sh</span>
-        </div>
+        <div class="devfit-symbol"><span class="code-icon">&lt;/&gt;</span></div>
+        <div class="devfit-brand"><span class="text-dev">dev</span>Fit<span class="text-sh">.sh</span></div>
     </a>
-
     <div class="nav-links">
         <a href="index.html">Inicio</a>
         <a href="rutinasVarias.html">Rutinas</a>
@@ -201,72 +163,134 @@ nav a {
     </div>
 </nav>
 
-    <div class="container">
-        <header>
-            <h1>Energy_Consumption.exe</h1>
-            <p>// Calcula el combustible que necesita tu unidad central</p>
-        </header>
+<header>
+    <div class="terminal-loader">> source health_metrics.sh... [OK]</div>
+    <h1>SYSTEM_<span>RESOURCES</span></h1>
+    <p>// DIAGNÓSTICO DE CONSUMO DE ENERGÍA Y CARGA DE CPU HUMANA</p>
+</header>
 
-        <div class="calc-card">
-            <div class="form-group">
-                <label>Género</label>
-                <select id="gender">
-                    <option value="male">Male (Hombre)</option>
-                    <option value="female">Female (Mujer)</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Peso (kg)</label>
-                <input type="number" id="weight" placeholder="Ej: 75">
-            </div>
-            <div class="form-group">
-                <label>Altura (cm)</label>
-                <input type="number" id="height" placeholder="Ej: 180">
-            </div>
-            <div class="form-group">
-                <label>Edad</label>
-                <input type="number" id="age" placeholder="Ej: 28">
-            </div>
-            <button class="btn-calc" onclick="calculateTMB()">Ejecutar Diagnóstico</button>
+<div class="container">
+    <div class="calc-window">
+        <div class="window-header">
+            <div class="dot" style="background: #ff5f56;"></div>
+            <div class="dot" style="background: #ffbd2e;"></div>
+            <div class="dot" style="background: #27c93f;"></div>
+            <span class="window-title">resource_monitor.exe</span>
+        </div>
 
-            <div id="result-display">
-                <h3>[RESULTADO DEL SISTEMA]</h3>
-                <p>Tu Tasa Metabólica Basal es de:</p>
-                <span class="result-value" id="tmb-value">0</span>
-                <p style="font-size: 0.8rem; color: #64748b;">*Estas son las calorías que quemas en reposo total (estado 'idle').</p>
+        <div class="calc-body">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Hardware_Model (Género)</label>
+                    <select id="gender">
+                        <option value="male">MALE</option>
+                        <option value="female">FEMALE</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Uptime_Years (Edad)</label>
+                    <input type="number" id="age" placeholder="28">
+                </div>
+                <div class="form-group">
+                    <label>Total_Mass (Peso KG)</label>
+                    <input type="number" id="weight" placeholder="75">
+                </div>
+                <div class="form-group">
+                    <label>Vertical_Scale (Altura CM)</label>
+                    <input type="number" id="height" placeholder="180">
+                </div>
+                <div class="form-group" style="grid-column: 1 / -1;">
+                    <label>Daily_Process_Load (Nivel de Actividad)</label>
+                    <select id="activity">
+                        <option value="1.2">IDLE (Sedentario / Programando todo el día)</option>
+                        <option value="1.375">LOW_LOAD (Ejercicio ligero 1-3 días)</option>
+                        <option value="1.55">BALANCED_LOAD (Entrenamiento 3-5 días)</option>
+                        <option value="1.725">HIGH_PERFORMANCE (Atleta / 6-7 días)</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="btn-execute" onclick="runDiagnostic()">
+                <span>RUN_SYSTEM_DIAGNOSTIC</span>
+                <span class="code-icon">--verbose</span>
+            </button>
+
+            <div id="diagnostic-report">
+                <h3 style="font-family: 'JetBrains Mono'; font-size: 1rem; margin-bottom: 25px; color: var(--bg-dark);">
+                    > DIAGNOSTIC_REPORT_GENERATED:
+                </h3>
+                
+                <div class="report-grid">
+                    <div class="metric-box">
+                        <span class="metric-label">CORE_BASE_CONSUMPTION (TMB)</span>
+                        <span class="metric-value" id="tmb-val">0</span>
+                        <span class="metric-desc">Energía consumida por el sistema en estado de reposo absoluto.</span>
+                    </div>
+
+                    <div class="metric-box brain">
+                        <span class="metric-label">BRAIN_OVERHEAD (COMPUTACIÓN)</span>
+                        <span class="metric-value" id="brain-val">0</span>
+                        <span class="metric-desc">Extra estimado por actividad cognitiva intensa y enfoque.</span>
+                    </div>
+
+                    <div class="metric-box highlight">
+                        <span class="metric-label">TOTAL_DAILY_MAINTENANCE (TDEE)</span>
+                        <span class="metric-value" id="total-val">0</span>
+                        <span class="metric-desc">Calorías totales para mantener el peso con tu carga actual.</span>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px; background: #1e293b; color: #94a3b8; padding: 20px; font-family: 'JetBrains Mono'; font-size: 0.8rem; border-radius: 4px;">
+                    <span style="color: var(--success);">[RECOMMENDATION]</span><br>
+                    Para optimizar el rendimiento (Bulk/Crecimiento), añade +300 kcal.<br>
+                    Para limpieza de archivos (Definición), resta -500 kcal.
+                </div>
             </div>
         </div>
     </div>
+</div>
 
-    <footer>
-        <span style="color:white; font-weight:900;">DevFit.sh</span><br>
-        Energy Optimization Systems
-    </footer>
+<footer>
+    <div style="font-weight: 900; font-size: 1.5rem; margin-bottom: 10px;">DEV<span style="color:var(--primary)">FIT</span>.SH</div>
+    <p>&copy; 2026 - ENGINEERED FOR HIGH PERFORMANCE HUMANS</p>
+</footer>
 
-    <script>
-        function calculateTMB() {
-            const gender = document.getElementById('gender').value;
-            const weight = parseFloat(document.getElementById('weight').value);
-            const height = parseFloat(document.getElementById('height').value);
-            const age = parseInt(document.getElementById('age').value);
+<script>
+    function runDiagnostic() {
+        const gender = document.getElementById('gender').value;
+        const weight = parseFloat(document.getElementById('weight').value);
+        const height = parseFloat(document.getElementById('height').value);
+        const age = parseInt(document.getElementById('age').value);
+        const activity = parseFloat(document.getElementById('activity').value);
 
-            if (isNaN(weight) || isNaN(height) || isNaN(age)) {
-                alert("Por favor, completa todos los campos con valores válidos.");
-                return;
-            }
-
-            let tmb = 0;
-
-            // Ecuación de Harris-Benedict revisada
-            if (gender === 'male') {
-                tmb = (10 * weight) + (6.25 * height) - (5 * age) + 5;
-            } else {
-                tmb = (10 * weight) + (6.25 * height) - (5 * age) - 161;
-            }
-
-            document.getElementById('tmb-value').innerText = Math.round(tmb) + " kcal";
-            document.getElementById('result-display').style.display = 'block';
+        if (!weight || !height || !age) {
+            alert("ERROR: Missing hardware parameters.");
+            return;
         }
-    </script>
+
+        // Cálculo Harris-Benedict revisado
+        let tmb = (gender === 'male') 
+            ? (10 * weight) + (6.25 * height) - (5 * age) + 5
+            : (10 * weight) + (6.25 * height) - (5 * age) - 161;
+
+        // El cerebro consume el 20% de la energía basal aprox. 
+        // Añadimos un "extra" por enfoque intenso
+        let brainOverhead = tmb * 0.2;
+        let total = tmb * activity;
+
+        // Actualizar UI con efecto de carga rápida
+        document.getElementById('diagnostic-report').style.display = 'block';
+        
+        document.getElementById('tmb-val').innerText = Math.round(tmb) + " kcal";
+        document.getElementById('brain-val').innerText = "+" + Math.round(brainOverhead) + " kcal";
+        document.getElementById('total-val').innerText = Math.round(total) + " kcal";
+
+        window.scrollTo({
+            top: document.getElementById('diagnostic-report').offsetTop - 50,
+            behavior: 'smooth'
+        });
+    }
+</script>
+
 </body>
 </html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevFit | Cookie_Protocol.cfg</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff7a00;
+            --secondary: #00d2ff;
+            --bg-dark: #0f172a;
+            --bg-light: #f8fafc;
+            --accent: #34d399; /* Verde para indicar parámetros activos */
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            margin: 0;
+            color: #1e293b;
+            line-height: 1.8;
+        }
+
+        .legal-wrapper {
+            max-width: 850px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .terminal-window {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .terminal-header {
+            background: #1e293b;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot-r { background: #ff5f56; }
+        .dot-y { background: #ffbd2e; }
+        .dot-g { background: #27c93f; }
+
+        .terminal-title {
+            color: #94a3b8;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            margin-left: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            padding: 50px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .back-btn:hover { text-decoration: underline; }
+
+        h1 {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 900;
+            font-size: 2rem;
+            margin: 0 0 10px 0;
+            letter-spacing: -1px;
+        }
+
+        .version-tag {
+            display: inline-block;
+            background: #f1f5f9;
+            color: #64748b;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            color: var(--secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-top: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .config-block {
+            background: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #475569;
+        }
+
+        .status-active {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        p { margin-bottom: 20px; font-size: 0.95rem; color: #475569; }
+
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            padding-bottom: 40px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: #94a3b8;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="legal-wrapper">
+        <a href="index.html" class="back-btn">< EXIT_TO_MAIN_PATH</a>
+
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="dot dot-r"></div>
+                <div class="dot dot-y"></div>
+                <div class="dot dot-g"></div>
+                <span class="terminal-title">bash — cookie_policy — 80x24</span>
+            </div>
+
+            <div class="content">
+                <h1>COOKIE_PROTOCOL.cfg</h1>
+                <span class="version-tag">CONFIG_FILE // LOADED_SUCCESSFULLY</span>
+
+                <p>Este documento describe los protocolos de almacenamiento local utilizados en <strong>DevFit.sh</strong> para optimizar la experiencia de usuario y la entrega de recursos.</p>
+
+                <div class="config-block">
+                    [SYSTEM_INFO]<br>
+                    cookie_status = <span class="status-active">ENABLED</span><br>
+                    tracking_mode = ANALYTICS_ONLY<br>
+                    third_party_sync = TRUE
+                </div>
+
+                <h2>01. DEFINICIÓN_DE_RECURSOS</h2>
+                <p>Las cookies son pequeños fragmentos de datos almacenados en tu navegador. Actúan como una memoria de corto plazo para la web, permitiéndonos recordar preferencias y analizar flujos de tráfico sin identificar personalmente al usuario.</p>
+
+                <h2>02. ADSENSE_MODULE (CRÍTICO)</h2>
+                <p>Para mantener este nodo gratuito, utilizamos <strong>Google AdSense</strong>. Google utiliza cookies para mostrar anuncios relevantes basados en tus visitas previas a este y otros sitios. Puedes gestionar estos parámetros en la configuración de anuncios de tu cuenta de Google.</p>
+
+                <h2>03. ANALYTICS_TRACKING</h2>
+                <p>Utilizamos cookies de análisis para entender cómo los usuarios navegan por nuestras rutas de entrenamiento. Estos datos nos ayudan a detectar "cuellos de botella" en la interfaz y mejorar el rendimiento del contenido.</p>
+
+                <h2>04. MANUAL_OVERRIDE</h2>
+                <p>Tienes el control total sobre tu "cache" de cookies. Puedes bloquear o eliminar las cookies desde la configuración de tu navegador (Chrome, Firefox, Safari, etc.). Ten en cuenta que desactivar ciertas cookies podría degradar algunos elementos visuales de la web.</p>
+            </div>
+        </div>
+
+        <footer>
+            CONFIG_ADMIN: DevFit.sh // END_OF_FILE
+        </footer>
+    </div>
+
+</body>
+</html>

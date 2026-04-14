@@ -3,312 +3,331 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevFit | Fuerza Nivel Alto</title>
+    <title>DevFit | Movilidad Nivel Bajo (Reset)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --bg-color: rgb(202, 202, 202);
-            --card-bg: #ffffff;
-            --nav-bg: #0f172a;
-            --text-main: #1e293b;
-            --border-color: #000000;
-            --orange: #ff4757; /* Rojo intenso para nivel alto */
+            --primary: #2ed573; /* Verde para Nivel Bajo / Recuperación */
+            --secondary: #00d2ff;
+            --bg-dark: #0f172a;
+            --bg-light: #f8fafc;
+            --card-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background-color: var(--bg-light);
             margin: 0;
+            color: #1e293b;
             line-height: 1.6;
         }
 
         /* --- NAVEGACIÓN --- */
-       nav {
-    display: flex;
-    justify-content: space-between; /* Logo a la izquierda, links a la derecha */
-    align-items: center;
-    padding: 0.8rem 2rem; /* Reducimos el padding vertical */
-    background: var(--nav-bg);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-/* Contenedor de enlaces */
-.nav-links {
-    display: flex;
-    gap: 25px;
-}
-
-nav a {
-    color: #ff9900;
-    text-decoration: none;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.85rem; /* Un poco más pequeño para legibilidad */
-    letter-spacing: 1px;
-}
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: 70px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
 
         .devfit-logo-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 8px; /* Menos espacio entre icono y texto */
-    text-decoration: none !important; /* Quita subrayados de enlace */
-    padding: 0;
-}
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none !important;
+        }
 
-.devfit-symbol {
-    width: 32px; /* Reducido de 45px */
-    height: 32px; /* Reducido de 45px */
-    border: 2px solid #000000;
-    background-color: #ffffff;
-    border-radius: 40% 10% 40% 40%; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 2px 2px 0px #ff7a00; /* Sombra más pequeña */
-    transition: all 0.2s ease;
-}
+        .devfit-symbol {
+            width: 32px;
+            height: 32px;
+            border: 2px solid #000000;
+            background-color: #ffffff;
+            border-radius: 40% 10% 40% 40%; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 2px 2px 0px var(--primary);
+            transition: all 0.2s ease;
+        }
 
-.code-icon {
-    color: #00d2ff;
-    font-family: 'Courier New', monospace;
-    font-weight: 900;
-    font-size: 0.75rem; /* Icono más pequeño */
-}
+        .code-icon {
+            color: #00d2ff;
+            font-family: 'Courier New', monospace;
+            font-weight: 900;
+            font-size: 0.75rem;
+        }
 
-.devfit-brand {
-    font-size: 1.3rem; /* Reducido de 1.8rem */
-    font-weight: 900;
-    color: #ffffff;
-    letter-spacing: -0.5px;
-    display: flex;
-    align-items: baseline;
-    text-transform: none; /* Evita que el logo se ponga en mayúsculas por el estilo general de nav a */
-}
+        .devfit-brand {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: baseline;
+        }
 
-.text-dev { color: #ff7a00; }
-.text-sh {
-    color: #00d2ff;
-    font-size: 0.7rem;
-    font-family: 'Courier New', monospace;
-    margin-left: 1px;
-}
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
 
-/* Hover interactivo para todo el logo */
-.devfit-logo-wrapper:hover .devfit-symbol {
-    transform: translate(-1px, -1px);
-    box-shadow: 4px 4px 0px #ff7a00;
-}
+        /* --- ADSENSE PLACEHOLDERS --- */
+        .ads-box {
+            background: #ebf2f7;
+            border: 1px dashed #cbd5e1;
+            margin: 20px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #94a3b8;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+        }
 
-        .container { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
-        
-        header { text-align: center; margin-bottom: 50px; }
+        .ads-top { width: 100%; max-width: 728px; height: 90px; }
+
+        /* --- HEADER --- */
+        header {
+            background: var(--bg-dark);
+            padding: 80px 20px 120px;
+            text-align: center;
+            color: white;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        }
+
         header h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 900;
             margin: 0;
-            background: linear-gradient(135deg, #000000, #444444);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            -webkit-text-fill-color: transparent;
+            color: white;
+        }
+
+        header span { color: var(--primary); }
+
+        /* --- SELECTOR --- */
+        .container {
+            max-width: 900px;
+            margin: -60px auto 0;
+            padding: 0 20px 100px;
         }
 
         .selector-card {
-            background: var(--card-bg);
-            border: 2px solid var(--border-color);
+            background: white;
             padding: 40px;
-            border-radius: 30px;
-            box-shadow: 10px 10px 0px var(--border-color);
-            margin-bottom: 40px;
+            border-radius: 4px;
+            box-shadow: var(--card-shadow);
             text-align: center;
+            margin-bottom: 40px;
         }
 
         .days-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
         .day-btn {
-            background: white;
-            border: 2px solid var(--border-color);
+            background: var(--bg-light);
+            border: 2px solid #e2e8f0;
             padding: 15px;
-            border-radius: 15px;
-            font-weight: 800;
+            font-weight: 900;
             cursor: pointer;
-            transition: 0.2s;
-            box-shadow: 4px 4px 0px var(--border-color);
+            transition: all 0.3s;
+            font-family: 'JetBrains Mono', monospace;
+            border-radius: 4px;
         }
 
-        .day-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px var(--border-color); }
-        .day-btn.active { background: var(--orange); color: white; transform: translate(2px, 2px); box-shadow: 0px 0px 0px; }
+        .day-btn:hover { border-color: var(--primary); color: var(--primary); }
+        .day-btn.active { background: var(--primary); color: #000; border-color: var(--primary); }
 
-        .routine-section {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
+        /* --- ROUTINE STYLES --- */
         .split-card {
             background: white;
-            border: 2px solid var(--border-color);
+            border-radius: 4px;
             padding: 30px;
-            border-radius: 20px;
             margin-bottom: 25px;
-            box-shadow: 8px 8px 0px var(--border-color);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            border-left: 6px solid var(--bg-dark);
+            animation: fadeIn 0.5s ease;
         }
 
         .split-title {
             display: inline-block;
-            background: var(--nav-bg);
-            color: var(--orange);
+            background: var(--bg-dark);
+            color: var(--primary);
             padding: 5px 15px;
-            border-radius: 8px;
-            font-weight: 800;
-            margin-bottom: 15px;
-            text-transform: uppercase;
+            font-weight: 900;
+            margin-bottom: 20px;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            font-family: 'JetBrains Mono', monospace;
         }
 
         .exercise-item {
-            margin-bottom: 15px;
-            padding-left: 20px;
-            border-left: 4px solid var(--orange);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f1f5f9;
         }
 
-        .exercise-item strong { display: block; font-size: 1.1rem; }
-        .exercise-item span { color: #64748b; font-size: 0.9rem; font-family: monospace; }
+        .exercise-item:last-child { border: none; }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .exercise-item strong {
+            display: block;
+            font-size: 1.1rem;
+            color: var(--bg-dark);
+        }
 
-        footer { text-align: center; padding: 60px; background: var(--nav-bg); color: var(--orange); margin-top: 60px; }
+        .exercise-item span {
+            color: #64748b;
+            font-size: 0.9rem;
+            font-family: 'JetBrains Mono', monospace;
+            display: block;
+            margin-top: 4px;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        footer {
+            background: #000;
+            color: white;
+            padding: 60px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 
-    <nav>
+<nav>
     <a href="index.html" class="devfit-logo-wrapper">
-        <div class="devfit-symbol">
-            <span class="code-icon">&lt;/&gt;</span>
-        </div>
-        <div class="devfit-brand">
-            <span class="text-dev">dev</span>Fit<span class="text-sh">.sh</span>
-        </div>
+        <div class="devfit-symbol"><span class="code-icon">&lt;/&gt;</span></div>
+        <div class="devfit-brand"><span style="color:#cbd5e1">dev</span>Fit<span style="color:#cbd5e1; font-size: 0.7rem; font-family: monospace;">.sh</span></div>
     </a>
-
     <div class="nav-links">
         <a href="index.html">Inicio</a>
-        <a href="rutinasVarias.html">Volver al Selector</a>
+        <a href="rutinasVarias.html">Volver</a>
     </div>
 </nav>
-    <div class="container">
-        <header>
-            <h1>Fuerza_Alto.exe</h1>
-            <p>// System Overclock: Maximum Resistance & Performance</p>
-        </header>
 
-        <div class="selector-card">
-            <h3>¿Cuántos días puedes entrenar a la semana?</h3>
-            <div class="days-grid">
-                <button class="day-btn" onclick="showRoutine(2, this)">2 DÍAS</button>
-                <button class="day-btn" onclick="showRoutine(3, this)">3 DÍAS</button>
-                <button class="day-btn" onclick="showRoutine(4, this)">4 DÍAS</button>
-            </div>
+<header>
+    <h1>MOVILIDAD_<span>BAJO</span>.EXE</h1>
+    <p>// MAINTENANCE_MODE: PREVENTIVE_CARE</p>
+</header>
+
+<div class="container">
+    <div class="ads-box ads-top">Publicidad AdSense</div>
+
+    <div class="selector-card">
+        <h3 style="font-weight: 900; margin-top: 0;">RECOVERY_SELECTOR</h3>
+        <p style="color: #64748b; font-size: 0.9rem;">Rutinas breves para eliminar la rigidez tras horas de código:</p>
+        <div class="days-grid">
+            <button class="day-btn" onclick="showRoutine(2, this)">2_SESSIONS</button>
+            <button class="day-btn" onclick="showRoutine(3, this)">3_SESSIONS</button>
+            <button class="day-btn" onclick="showRoutine(4, this)">4_SESSIONS</button>
         </div>
-
-        <div id="routine-display"></div>
     </div>
 
-     <footer>
-        <span style="color:white; font-weight:900;">DevFit.sh</span><br>
-        Ergonomics & Health Protocol v1.0
-    </footer>
+    <div id="routine-display">
+    </div>
 
-    <script>
-        const routines = {
-            2: `
-                <div class="routine-section" style="display:block">
-                    <div class="split-card">
-                        <span class="split-title">Día 1: Full Body Heavy (Empuje)</span>
-                        <div class="exercise-item">
-                            <strong>Flexiones Archer o con un Brazo</strong>
-                            <span>4 series x 8-10 reps // Intensidad unilateral extrema.</span>
-                        </div>
-                        <div class="exercise-item">
-                            <strong>Sentadilla Búlgara con Carga Pesada</strong>
-                            <span>4 series x 10 reps por pierna // Usa tus mancuernas más pesadas.</span>
-                        </div>
-                        <div class="exercise-item">
-                            <strong>Press Militar de Pie (Mancuernas)</strong>
-                            <span>4 series x 8 reps // Control de core y fuerza de hombros.</span>
-                        </div>
-                    </div>
-                    <div class="split-card">
-                        <span class="split-title">Día 2: Full Body Heavy (Tracción)</span>
-                        <div class="exercise-item">
-                            <strong>Remo con Mancuerna Pesada</strong>
-                            <span>4 series x 8 reps // Carga máxima controlando el tempo (3s bajada).</span>
-                        </div>
-                        <div class="exercise-item">
-                            <strong>Peso Muerto Rumano Unilateral</strong>
-                            <span>4 series x 10 reps // Máxima demanda de estabilidad y cadena posterior.</span>
-                        </div>
-                        <div class="exercise-item">
-                            <strong>Plancha Abdominal con Peso (Disco/Mochila)</strong>
-                            <span>4 series x 60 seg // Resistencia máxima bajo carga.</span>
-                        </div>
-                    </div>
-                </div>`,
-            3: `
-                <div class="routine-section" style="display:block">
-                    <div class="split-card"><span class="split-title">Día 1: Push (Pecho/Hombro/Tríceps)</span>
-                        <div class="exercise-item"><strong>Floor Press Pesado (Mancuernas)</strong><span>4x8 reps</span></div>
-                        <div class="exercise-item"><strong>Flexiones de Pica (Pike Pushups)</strong><span>4x10 reps</span></div>
-                        <div class="exercise-item"><strong>Fondos en Sillas (Dips) con Lastre</strong><span>3x12 reps</span></div>
-                    </div>
-                    <div class="split-card"><span class="split-title">Día 2: Pull (Espalda/Bíceps)</span>
-                        <div class="exercise-item"><strong>Remo Pendlay con Mancuernas</strong><span>4x10 reps</span></div>
-                        <div class="exercise-item"><strong>Facepulls Pesados con Banda</strong><span>4x15 reps</span></div>
-                        <div class="exercise-item"><strong>Curl de Bíceps Martillo</strong><span>3x12 reps</span></div>
-                    </div>
-                    <div class="split-card"><span class="split-title">Día 3: Legs & Core</span>
-                        <div class="exercise-item"><strong>Zancadas Explosivas con Peso</strong><span>4x10 por pierna</span></div>
-                        <div class="exercise-item"><strong>Puente de Glúteo a una pierna (con peso)</strong><span>4x12 reps</span></div>
-                        <div class="exercise-item"><strong>Hollow Body Rock</strong><span>4x45 seg</span></div>
-                    </div>
-                </div>`,
-            4: `
-                <div class="routine-section" style="display:block">
-                    <div class="split-card"><span class="split-title">Día 1: Torso Power (Push Focus)</span>
-                        <div class="exercise-item"><strong>Push-ups con parada abajo (2s)</strong><span>4x12 reps</span></div>
-                        <div class="exercise-item"><strong>Press Arnold Sentado</strong><span>4x10 reps</span></div>
-                    </div>
-                    <div class="split-card"><span class="split-title">Día 2: Leg Power (Quads/Calf)</span>
-                        <div class="exercise-item"><strong>Sentadilla Goblet con Pausa (3s)</strong><span>4x12 reps</span></div>
-                        <div class="exercise-item"><strong>Sissy Squat (asistida)</strong><span>3x15 reps</span></div>
-                    </div>
-                    <div class="split-card"><span class="split-title">Día 3: Torso Power (Pull Focus)</span>
-                        <div class="exercise-item"><strong>Remo Renegado (Mancuernas)</strong><span>4x10 por brazo</span></div>
-                        <div class="exercise-item"><strong>Pull-apart con banda fuerte</strong><span>4x20 reps</span></div>
-                    </div>
-                    <div class="split-card"><span class="split-title">Día 4: Leg Power (Glute/Ham/Core)</span>
-                        <div class="exercise-item"><strong>Peso Muerto Rumano Pesado</strong><span>4x10 reps</span></div>
-                        <div class="exercise-item"><strong>L-Sit en suelo o sillas</strong><span>4xMax tiempo</span></div>
-                    </div>
-                </div>`
-        };
+    <div class="ads-box ads-top">Publicidad AdSense</div>
+</div>
 
-        function showRoutine(days, btn) {
-            document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            document.getElementById('routine-display').innerHTML = routines[days];
-            window.scrollTo({
-                top: document.getElementById('routine-display').offsetTop - 100,
-                behavior: 'smooth'
-            });
-        }
-    </script>
+<footer>
+    <div style="font-weight: 900; font-size: 1.5rem;">DEV<span style="color:var(--primary)">FIT</span>.SH</div>
+    <p>&copy; 2026 - LEVEL: SUSTAINABLE_DEVELOPMENT</p>
+</footer>
+
+<script>
+    const routines = {
+        2: `
+            <div class="split-card">
+                <span class="split-title">SESIÓN A: DESKTOP RELIEF</span>
+                <div class="exercise-item">
+                    <strong>Círculos de Cuello Controlados</strong>
+                    <span>2 series x 10 círculos // Movimiento muy lento y fluido.</span>
+                </div>
+                <div class="exercise-item">
+                    <strong>Estiramiento de Muñeca (Mouse Hand)</strong>
+                    <span>3 series x 30 seg // Estirar flexores y extensores.</span>
+                </div>
+                <div class="exercise-item">
+                    <strong>Rotación Torácica en Silla</strong>
+                    <span>3 series x 10 por lado // Mejora la postura de la espalda alta.</span>
+                </div>
+            </div>
+            <div class="split-card">
+                <span class="split-title">SESIÓN B: LOWER BODY UNLOCK</span>
+                <div class="exercise-item">
+                    <strong>Estiramiento de Glúteo Sentado</strong>
+                    <span>3 series x 45 seg // Alivia la presión lumbar.</span>
+                </div>
+                <div class="exercise-item">
+                    <strong>Zancada con Apertura de Pecho</strong>
+                    <span>3 series x 10 reps // Abre cadera y caja torácica.</span>
+                </div>
+            </div>`,
+        3: `
+            <div class="split-card">
+                <span class="split-title">DÍA 01: POSTURE RESET</span>
+                <div class="exercise-item"><strong>Aperturas de Pecho en Puerta</strong><span>3x30 seg</span></div>
+                <div class="exercise-item"><strong>Chin Tucks (Doble mentón)</strong><span>3x15 reps</span></div>
+            </div>
+            <div class="split-card">
+                <span class="split-title">DÍA 02: HIP MOBILITY</span>
+                <div class="exercise-item"><strong>Estiramiento del Psoas</strong><span>3x40 seg por pierna</span></div>
+                <div class="exercise-item"><strong>Círculos de Cadera de Pie</strong><span>3x15 reps</span></div>
+            </div>
+            <div class="split-card">
+                <span class="split-title">DÍA 03: SPINE DECOMPRESSION</span>
+                <div class="exercise-item"><strong>Posición del Gato (Cat-Cow)</strong><span>3x12 reps</span></div>
+                <div class="exercise-item"><strong>Posición del Niño (Child's Pose)</strong><span>2 min mantenidos</span></div>
+            </div>`,
+        4: `
+            <div class="split-card">
+                <span class="split-title">SESSION 01: CERVICAL & SHOULDERS</span>
+                <div class="exercise-item"><strong>Retracciones Escapulares</strong><span>3x12 reps</span></div>
+            </div>
+            <div class="split-card">
+                <span class="split-title">SESSION 02: FOREARM & WRISTS</span>
+                <div class="exercise-item"><strong>Masaje con pelota/mano en antebrazo</strong><span>2 min por lado</span></div>
+            </div>
+            <div class="split-card">
+                <span class="split-title">SESSION 03: CORE & LUMBAR CALM</span>
+                <div class="exercise-item"><strong>Respiración Diafragmática</strong><span>5 min</span></div>
+                <div class="exercise-item"><strong>Giro Espinal Tumbado</strong><span>3x30 seg por lado</span></div>
+            </div>
+            <div class="split-card">
+                <span class="split-title">SESSION 04: LOWER EXTREMITIES</span>
+                <div class="exercise-item"><strong>Estiramiento de Isquios en Silla</strong><span>3x45 seg</span></div>
+                <div class="exercise-item"><strong>Movilidad de Tobillos</strong><span>3x15 círculos</span></div>
+            </div>`
+    };
+
+    function showRoutine(days, btn) {
+        document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('routine-display').innerHTML = routines[days];
+        
+        window.scrollTo({
+            top: document.getElementById('routine-display').offsetTop - 100,
+            behavior: 'smooth'
+        });
+    }
+</script>
+
 </body>
 </html>

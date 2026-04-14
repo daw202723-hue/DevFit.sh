@@ -4,50 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DevFit | Troubleshooting Humano</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --bg-color: rgb(202, 202, 202);
-            --card-bg: #ffffff;
-            --nav-bg: #0f172a;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --border-color: #000000;
-            --orange: #ff9900; 
+            --primary: #ff7a00;
+            --secondary: #00d2ff;
+            --bg-dark: #0f172a;
+            --bg-light: #f8fafc;
+            --card-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background-color: var(--bg-light);
             margin: 0;
+            color: #1e293b;
             line-height: 1.6;
         }
 
-        /* --- NAVEGACIÓN --- */
+        /* --- NAVEGACIÓN (LOGO Y TEXTOS EXACTOS) --- */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.8rem 2rem;
-            background: var(--nav-bg);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            padding: 0 5%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
-            z-index: 100;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 25px;
-        }
-
-        nav a {
-            color: #ff9900;
-            text-decoration: none;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
+            z-index: 1000;
+            height: 70px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
         .devfit-logo-wrapper {
@@ -66,7 +54,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 2px 2px 0px #ff7a00;
+            box-shadow: 2px 2px 0px #cbd5e1;
             transition: all 0.2s ease;
         }
 
@@ -87,127 +75,149 @@
             text-transform: none;
         }
 
-        .text-dev { color: #ff7a00; }
-        .text-sh { color: #00d2ff; font-size: 0.7rem; font-family: 'Courier New', monospace; margin-left: 1px; }
+        .text-dev { color: #cbd5e1; }
+        .text-sh { color: #cbd5e1; font-size: 0.7rem; font-family: 'Courier New', monospace; margin-left: 1px; }
 
-        .devfit-logo-wrapper:hover .devfit-symbol {
-            transform: translate(-1px, -1px);
-            box-shadow: 4px 4px 0px #ff7a00;
+        .nav-links {
+            display: flex;
+            gap: 30px;
         }
 
-        /* --- CONTENEDOR Y GRID --- */
-        .container { max-width: 1000px; margin: 0 auto; padding: 60px 20px; }
-        
-        header { text-align: center; margin-bottom: 50px; }
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--secondary); }
+
+        /* --- ADSENSE PLACEHOLDERS --- */
+        .ads-box {
+            background: #ebf2f7;
+            border: 1px dashed #cbd5e1;
+            margin: 20px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #94a3b8;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+        }
+
+        .ads-top { width: 100%; max-width: 728px; height: 90px; }
+        .ads-mid { width: 100%; max-width: 1000px; height: 150px; margin: 40px auto; }
+
+        /* --- HEADER --- */
+        header {
+            background: var(--bg-dark);
+            padding: 80px 20px 120px;
+            text-align: center;
+            color: white;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        }
+
         header h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 900;
             margin: 0;
-            background: linear-gradient(135deg, #000000, #444444);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
+            letter-spacing: -2px;
+        }
+
+        header p {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--primary);
+            font-size: 1rem;
+        }
+
+        /* --- CONTENIDO --- */
+        .container {
+            max-width: 1000px;
+            margin: -60px auto 0;
+            padding: 0 20px 100px;
         }
 
         .section-title {
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin: 40px 0 20px;
+            font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--nav-bg);
-            border-left: 8px solid var(--orange);
-            padding-left: 15px;
+            letter-spacing: 3px;
+            color: var(--bg-dark);
+            font-weight: 900;
+            background: var(--primary);
+            padding: 5px 15px;
+            display: inline-block;
+            margin: 40px 0 20px;
         }
 
-       .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-    align-items: start; /* <--- ESTO EVITA QUE SE ESTIREN LAS DEMÁS */
-}
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            align-items: start;
+        }
 
-        /* --- TARJETAS INTERACTIVAS (ACORDEÓN) --- */
+        /* --- TARJETAS --- */
         .problem-card {
-            background: var(--card-bg);
-            border: 2px solid var(--border-color);
+            background: white;
+            border: 1px solid #e2e8f0;
             padding: 25px;
-            border-radius: 20px;
-            box-shadow: 6px 6px 0px var(--border-color);
-            position: relative;
+            border-radius: 4px;
+            box-shadow: var(--card-shadow);
             cursor: pointer;
-            transition: all 0.3s ease;
-            overflow: hidden;
+            transition: transform 0.3s ease;
+            position: relative;
         }
 
-        .problem-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 10px 10px 0px var(--border-color);
-        }
-
-        .problem-card.hw { border-top: 10px solid #ef4444; }
-        .problem-card.sw { border-top: 10px solid #3b82f6; }
+        .problem-card:hover { transform: translateY(-5px); }
+        .problem-card.hw { border-top: 4px solid #ef4444; }
+        .problem-card.sw { border-top: 4px solid var(--secondary); }
 
         .card-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 15px;
         }
 
-        .problem-card h3 { margin: 0; font-size: 1.2rem; color: var(--nav-bg); }
+        .problem-card h3 { margin: 0; font-size: 1.2rem; color: var(--bg-dark); font-weight: 900; }
 
-        .arrow-icon {
-            font-size: 1.5rem;
-            color: var(--orange);
-            transition: transform 0.3s ease;
-            font-weight: 900;
-        }
-
-        .category-badge {
-            font-size: 0.7rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            padding: 2px 8px;
-            border-radius: 5px;
-            background: #f1f5f9;
-            margin-bottom: 10px;
-            display: inline-block;
-        }
-
-        /* Contenido oculto */
         .extra-info {
             max-height: 0;
             opacity: 0;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            font-size: 0.95rem;
-            color: var(--text-muted);
+            overflow: hidden;
+            transition: all 0.4s ease;
         }
 
         .problem-card.active .extra-info {
             max-height: 500px;
             opacity: 1;
-            margin-top: 15px;
-            padding-top: 15px;
+            margin-top: 20px;
+            padding-top: 20px;
             border-top: 1px solid #eee;
         }
 
-        .problem-card.active .arrow-icon {
-            transform: rotate(180deg);
-        }
-
         .solution-box {
-            background: #f8fafc;
-            padding: 12px;
-            border-radius: 10px;
+            background: #0f172a;
+            color: #fff;
+            padding: 15px;
+            border-radius: 4px;
             margin-top: 15px;
-            font-size: 0.9rem;
-            border: 1px dashed #cbd5e1;
-            color: var(--text-main);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
         }
 
-        .solution-box strong { color: var(--orange); }
+        .solution-box strong { color: var(--primary); display: block; margin-bottom: 5px; }
 
-        footer { text-align: center; padding: 60px; background: var(--nav-bg); color: #ff9900; margin-top: 60px; }
+        footer {
+            background: #000;
+            color: white;
+            padding: 60px;
+            text-align: center;
+            font-size: 0.8rem;
+        }
     </style>
 </head>
 <body>
@@ -225,122 +235,120 @@
     </div>
 </nav>
 
+<header>
+    <h1>TROUBLESHOOTING_<span>LOG</span></h1>
+    <p>// DEBUGGING THE BIOLOGICAL SYSTEM</p>
+</header>
+
 <div class="container">
-    <header>
-        <h1>Troubleshooting.log</h1>
-        <p>// Debugging the Developer: Health & Mental Patches</p>
-    </header>
+    
+    <div class="ads-box ads-top">Anuncio AdSense (Horizontal)</div>
 
-    <div class="section-title">Hardware Issues (Físicos)</div>
+    <div class="section-title">Hardware_Issues</div>
     <div class="grid">
         <div class="problem-card hw" onclick="toggleCard(this)">
             <div class="card-header">
-                <div>
-                    <span class="category-badge">Spine.critical</span>
-                    <h3>Dolor Lumbar y Cervical</h3>
-                </div>
-                <span class="arrow-icon">▾</span>
+                <span style="font-family: monospace; font-size: 0.7rem; color: #ef4444;">SPINE.CRITICAL</span>
+                <span class="arrow">▼</span>
             </div>
-            <p>Columna "bloqueada" por 8h+ de posición estática.</p>
+            <h3>Dolor Lumbar y Cervical</h3>
             <div class="extra-info">
-                <p>La inactividad prolongada deshidrata los discos intervertebrales. La gravedad y la mala postura (nerd neck) crean una carga desproporcionada en las vértebras C7 y L5.</p>
-                <div class="solution-box"><strong>Patch:</strong> Ejercicios de Movilidad cada 2 horas (Gato-Camello).</div>
+                <p>La inactividad prolongada deshidrata los discos intervertebrales. La gravedad y la mala postura crean una carga desproporcionada.</p>
+                <div class="solution-box">
+                    <strong>PATCH_APPLIED:</strong>
+                    Ejercicios de movilidad cada 2 horas (Gato-Camello).
+                </div>
             </div>
         </div>
-
-        <div class="problem-card hw" onclick="toggleCard(this)">
-            <div class="card-header">
-                <div>
-                    <span class="category-badge">System.sleep</span>
-                    <h3>Trastornos del Sueño</h3>
-                </div>
-                <span class="arrow-icon">▾</span>
-            </div>
-            <p>Ritmo circadiano alterado por despliegues nocturnos.</p>
-            <div class="extra-info">
-                <p>La luz azul de los monitores inhibe la producción de melatonina, engañando al cerebro para que piense que aún es de día, arruinando la fase REM profunda.</p>
-                <div class="solution-box"><strong>Patch:</strong> Filtros de luz azul y 15 min de sol al despertar.</div>
-            </div>
         </div>
 
-        <div class="problem-card hw" onclick="toggleCard(this)">
-            <div class="card-header">
-                <div>
-                    <span class="category-badge">Input.processing</span>
-                    <h3>Mala Digestión</h3>
-                </div>
-                <span class="arrow-icon">▾</span>
-            </div>
-            <p>Comer frente a la pantalla ralentiza el metabolismo.</p>
-            <div class="extra-info">
-                <p>El estado de "alerta" mientras programas bloquea el sistema parasimpático necesario para una digestión eficiente, causando hinchazón y fatiga post-comida.</p>
-                <div class="solution-box"><strong>Patch:</strong> Zero-Screen Policy durante las comidas.</div>
-            </div>
-        </div>
-    </div>
+<div id="blue-light-overlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(255, 145, 0, 0.15); pointer-events: none; z-index: 9999; display: none; mix-blend-mode: multiply;"></div>
+    <div class="ads-box ads-mid">Anuncio AdSense (In-Feed / Contenido)</div>
 
-    <div class="section-title">Software Glitches (Mentales)</div>
+    <div class="section-title" style="background: var(--secondary);">Software_Glitches</div>
     <div class="grid">
         <div class="problem-card sw" onclick="toggleCard(this)">
             <div class="card-header">
-                <div>
-                    <span class="category-badge">Logic.error</span>
-                    <h3>Síndrome del Impostor</h3>
-                </div>
-                <span class="arrow-icon">▾</span>
+                <span style="font-family: monospace; font-size: 0.7rem; color: var(--secondary);">LOGIC.ERROR</span>
+                <span class="arrow">▼</span>
             </div>
-            <p>Miedo a ser "descubierto" como un fraude técnico.</p>
+            <h3>Síndrome del Impostor</h3>
             <div class="extra-info">
-                <p>En un entorno de aprendizaje infinito, es imposible saberlo todo. No saber algo no es un fallo, es un estado temporal antes del próximo commit.</p>
-                <div class="solution-box"><strong>Patch:</strong> Repasa tu historial de Git; tú resolviste eso.</div>
+                <p>En un entorno de aprendizaje infinito, es imposible saberlo todo. No saber algo es un estado temporal.</p>
+                <div class="solution-box">
+                    <strong>PATCH_APPLIED:</strong>
+                    Repasa tu historial de Git; tú resolviste eso.
+                </div>
+            </div>
+        </div>
+        </div>
+</div>
+<div class="container" style="margin-top: 100px; position: relative;">
+    <span class="section-title">08. Vision_Protection</span>
+    <h2 style="font-size: 3.5rem; font-weight: 900; letter-spacing: -2px; margin: 10px 0;">FATIGA_VISUAL.log</h2>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px;">
+        
+        <div style="background: white; padding: 30px; border-radius: 8px; border: 2px solid #e2e8f0; box-shadow: var(--card-shadow);">
+            <h3 style="font-family: 'JetBrains Mono'; font-size: 1rem; color: var(--bg-dark); margin-top: 0;">[SIMULADOR_FILTRO_DOCKER]</h3>
+            <p style="font-size: 0.9rem; color: #64748b;">Activa el filtro para reducir el estrés en tus fotorreceptores mientras programas.</p>
+            
+            <button id="blue-light-btn" onclick="toggleBlueLightFilter()" style="width: 100%; background: #f1f5f9; border: 2px solid #cbd5e1; padding: 15px; border-radius: 4px; font-family: 'JetBrains Mono'; font-weight: 700; cursor: pointer; transition: all 0.3s;">
+                EXEC_FILTER_MODE: OFF
+            </button>
+
+            <div style="margin-top: 25px; padding-top: 20px; border-top: 1px dashed #cbd5e1;">
+                <span style="font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--primary); font-weight: 900;">// VS_CODE_OPTIMIZATION:</span>
+                <ul style="font-size: 0.8rem; padding-left: 15px; margin-top: 10px; color: #475569;">
+                    <li><strong>Theme:</strong> Usa "Gruvbox Hard" o "Solarized Dark" (reducen el contraste violento).</li>
+                    <li><strong>Editor:</strong> <code>"editor.letterSpacing": 0.5</code> (mejora la legibilidad).</li>
+                </ul>
             </div>
         </div>
 
-        <div class="problem-card sw" onclick="toggleCard(this)">
-            <div class="card-header">
-                <div>
-                    <span class="category-badge">CPU.overheat</span>
-                    <h3>Agotamiento / Burnout</h3>
-                </div>
-                <span class="arrow-icon">▾</span>
+        <div>
+            <h4 style="margin-top: 0; font-size: 1.5rem; font-weight: 900;">La Regla 20-20-20</h4>
+            <p style="color: #475569;">El ojo humano no evolucionó para mirar un plano fijo iluminado a 50cm durante 10 horas. Para evitar el <strong>Computer Vision Syndrome</strong>, aplica este patch cada hora:</p>
+            
+            <div style="background: var(--bg-dark); color: var(--secondary); padding: 20px; font-family: 'JetBrains Mono'; border-radius: 4px;">
+                <div style="margin-bottom: 10px;"><span style="color: #64748b;">01</span> Cada <span style="color: white;">20 minutos</span></div>
+                <div style="margin-bottom: 10px;"><span style="color: #64748b;">02</span> Mira a <span style="color: white;">20 pies</span> (6 metros)</div>
+                <div><span style="color: #64748b;">03</span> Durante <span style="color: white;">20 segundos</span></div>
             </div>
-            <p>Cerebro en "overclock" constante sin enfriamiento.</p>
-            <div class="extra-info">
-                <p>El agotamiento crónico reduce la capacidad de abstracción. Un cerebro cansado produce código con más bugs, lo que genera más trabajo y más estrés.</p>
-                <div class="solution-box"><strong>Patch:</strong> Desconexión total de notificaciones el fin de semana.</div>
-            </div>
-        </div>
-
-        <div class="problem-card sw" onclick="toggleCard(this)">
-            <div class="card-header">
-                <div>
-                    <span class="category-badge">Async.hang</span>
-                    <h3>Parálisis por Análisis</h3>
-                </div>
-                <span class="arrow-icon">▾</span>
-            </div>
-            <p>Búsqueda de la solución "perfecta" sin escribir nada.</p>
-            <div class="extra-info">
-                <p>El perfeccionismo es el enemigo de la entrega. El código perfecto no existe, solo el código que escala y se puede refactorizar.</p>
-                <div class="solution-box"><strong>Patch:</strong> "Make it work, make it right, make it fast".</div>
-            </div>
+            <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 15px;">// Esto permite que el músculo ciliar se relaje por completo.</p>
         </div>
     </div>
 </div>
 
- <footer>
-        <span style="color:white; font-weight:900;">DevFit.sh</span><br>
-        Ergonomics & Health Protocol v1.0
-    </footer>
+<footer>
+    <div style="font-weight: 900; font-size: 1.5rem;">DEV<span style="color:var(--primary)">FIT</span></div>
+    <p>&copy; 2026 - ENGINEERED FOR HIGH PERFORMANCE HUMANS</p>
+    <div class="ads-box" style="width: 300px; height: 50px; margin: 20px auto;">Anuncio AdSense (Footer)</div>
+</footer>
 
 <script>
+    function toggleBlueLightFilter() {
+    const overlay = document.getElementById('blue-light-overlay');
+    const btn = document.getElementById('blue-light-btn');
+    
+    if (overlay.style.display === 'none') {
+        overlay.style.display = 'block';
+        btn.innerText = 'EXEC_FILTER_MODE: ON';
+        btn.style.background = 'var(--primary)';
+        btn.style.color = 'white';
+        btn.style.borderColor = 'var(--primary)';
+    } else {
+        overlay.style.display = 'none';
+        btn.innerText = 'EXEC_FILTER_MODE: OFF';
+        btn.style.background = '#f1f5f9';
+        btn.style.color = 'var(--bg-dark)';
+        btn.style.borderColor = '#cbd5e1';
+    }
+}
     function toggleCard(card) {
-        // Cierra otras tarjetas al abrir una nueva
-        document.querySelectorAll('.problem-card').forEach(otherCard => {
-            if (otherCard !== card) otherCard.classList.remove('active');
+        document.querySelectorAll('.problem-card').forEach(c => {
+            if (c !== card) c.classList.remove('active');
         });
-
-        // Alterna el estado de la tarjeta clickeada
         card.classList.toggle('active');
     }
 </script>
